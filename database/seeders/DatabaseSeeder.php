@@ -14,6 +14,12 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        \App\Models\Vehicle::factory(30)->create();
+
+        $this->call([
+            BodyTypeSeeder::class,
+            FuelTypeSeeder::class,
+            MakeSeeder::class,
+        ]);
     }
 }
