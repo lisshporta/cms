@@ -10,4 +10,8 @@ class VehicleController extends Controller
     public function index(){
         return view('admin.cars.index');
     }
+
+    public function new(){
+        return view('admin.cars.new');
+    }
 }

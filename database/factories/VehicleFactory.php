@@ -31,7 +31,7 @@ class VehicleFactory extends Factory
             'color' => $this->faker->colorName(),
             'engine' => '1,5L',
             'fuel_type' => 'petrol',
-            'mileage' => '2500 KM',
+            'mileage' => 20000,
             'door_count' => $this->faker->vehicleDoorCount,
             'seat_count' => $this->faker->vehicleSeatCount,
             'gearbox' => $this->faker->vehicleGearBoxType,
