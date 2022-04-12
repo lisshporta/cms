@@ -6,7 +6,12 @@
         </h2>
     </x-slot>
 
+    <div class="pb-6 flex flex-row justify-end">
+        <x-volt-button href="{{route('car.new')}}" title='New Car' />
+    </div>
 
-    @livewire('tables.car')
+    <div class="pb-20">
+        @livewire('tables.car')
+    </div>
 
 </x-app-layout>

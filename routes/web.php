@@ -26,7 +26,8 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
         Route::prefix('cars')->group(function () {
             Route::get('/', [AdminVehicleController::class,  'index'])->name('cars.index');
-            Route::get('/new', [AdminVehicleController::class,  'new'])->name('cars.new');
+            Route::get('/new', [AdminVehicleController::class,  'new'])->name('car.new');
+            Route::get('/edit/{id}', [AdminVehicleController::class,  'update'])->name('car.edit');
         });
     });
 });
