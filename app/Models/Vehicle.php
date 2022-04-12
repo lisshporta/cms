@@ -11,6 +11,23 @@ class Vehicle extends Model
 {
     use HasFactory, HasSlug;
 
+    protected $fillable = [
+        'name',
+        'make',
+        'model',
+        'body_type',
+        'year',
+        'price',
+        'color',
+        'engine',
+        'fuel_type',
+        'mileage',
+        'door_count',
+        'seat_count',
+        'gearbox',
+        'condition'
+    ];
+
     public function getSlugOptions() : SlugOptions
     {
         return SlugOptions::create()

@@ -18,13 +18,13 @@ return new class extends Migration
             $table->string('name');
             $table->string('make');
             $table->string('model');
-            $table->string('body_type');
+            $table->string('body_type')->default('Sedan');
             $table->year('year');
             $table->decimal('price', 11, 2)->default(0);
             $table->string('color');
-            $table->string('engine');
-            $table->string('fuel_type');
-            $table->string('mileage')->nullable();
+            $table->string('engine')->default('Automatic');
+            $table->string('fuel_type')->default('Petrol');
+            $table->integer('mileage')->default(0);
             $table->string('slug');
             $table->timestamps();
         });
