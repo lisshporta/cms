@@ -15,6 +15,7 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
         "pelmered/fake-car": "^1.7",
+        "spatie/laravel-flash": "^1.9",
         "spatie/laravel-sluggable": "^3.4"
     },
     "require-dev": {

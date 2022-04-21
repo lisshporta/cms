@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Tables;
+namespace App\Http\Livewire\Tables\Car;
 
 use App\Models\Vehicle;
 use Livewire\Component;
@@ -10,7 +10,7 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Closure;
 
-class Car extends Component implements Tables\Contracts\HasTable
+class All extends Component implements Tables\Contracts\HasTable
 {
     use Tables\Concerns\InteractsWithTable;
 
@@ -22,18 +22,17 @@ class Car extends Component implements Tables\Contracts\HasTable
     protected function getTableColumns(): array
     {
         return [
-            TextColumn::make('name'),
-            TextColumn::make('make'),
-            TextColumn::make('model'),
-            TextColumn::make('body_type')->label('Body Type'),
-            TextColumn::make('color'),
-            TextColumn::make('condition'),
+            TextColumn::make('name')->sortable()->searchable(),
+            TextColumn::make('make')->sortable()->searchable(),
+            TextColumn::make('model')->sortable()->searchable(),
+            TextColumn::make('body_type')->label('Body Type')->sortable(),
+            TextColumn::make('color')->sortable(),
             BadgeColumn::make('condition')
                 ->colors([
                     'warning' => 'Used',
                     'success' => 'New',
-                ]),
-            Tables\Columns\TextColumn::make('fuel_type')->label('Fuel'),
+                ])->sortable(),
+            TextColumn::make('fuel_type')->label('Fuel')->sortable(),
         ];
     }
 
@@ -44,7 +43,7 @@ class Car extends Component implements Tables\Contracts\HasTable
 
     protected function getTableRecordUrlUsing(): Closure
     {
-        return fn (Vehicle $record): string => route('car.edit', ['id' => $record->id]);
+        return fn (Vehicle $record): string => route('car.update', ['id' => $record->id]);
     }
 
     protected function getTableEmptyStateActions(): array
