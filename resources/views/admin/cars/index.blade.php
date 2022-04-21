@@ -11,7 +11,7 @@
     </div>
 
     <div class="pb-20">
-        @livewire('tables.car')
+        @livewire('tables.car.all')
     </div>
 
 </x-app-layout>

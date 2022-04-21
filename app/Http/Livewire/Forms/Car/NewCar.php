@@ -13,7 +13,9 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\URL;
 
 class NewCar extends Component implements Forms\Contracts\HasForms
 {
@@ -59,12 +61,7 @@ class NewCar extends Component implements Forms\Contracts\HasForms
                         ->required()
                         ->dehydrateStateUsing(fn ($state) => Make::where('id', $state)->first()?->name)
                         ->searchable(),
-                    Select::make('model')
-                        ->label('Model')
-                        ->options(Model::all()->pluck('name', 'id'))
-                        ->dehydrateStateUsing(fn ($state) => Model::where('id', $state)->first()?->name)
-                        ->required()
-                        ->searchable(),
+                    TextInput::make('model')->required(),
                     Select::make('body_type')
                         ->label('Body Type')
                         ->options(BodyType::all()->pluck('name', 'id'))
@@ -98,7 +95,7 @@ class NewCar extends Component implements Forms\Contracts\HasForms
                 'lg' => 4,
             ])
                 ->schema([
-                    TextInput::make('price')->mask(fn (TextInput\Mask $mask) => $mask
+                    TextInput::make('price')->default('0.00')->mask(fn (TextInput\Mask $mask) => $mask
                         ->patternBlocks([
                             'money' => fn (TextInput\Mask $mask) => $mask
                                 ->numeric()
@@ -118,11 +115,16 @@ class NewCar extends Component implements Forms\Contracts\HasForms
         ];
     }
 
-    public function submit(): void
+    public function submit()
     {
-        Vehicle::create($this->form->getState());
+        $vehicle = Vehicle::create($this->form->getState());
+        if (!$vehicle) {
+            flash()->error('An unexpected error occured while adding this vehicle.');
+            Redirect::route('car.new');
+        }
 
-        Redirect::route('cars.index');
+        flash()->success('Vehicle has been added successfully.');
+        Redirect::route('car.update', ['id' => $vehicle->id]);
     }
 
 

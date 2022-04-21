@@ -13,6 +13,7 @@ use Filament\Forms\Components\Grid;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\TextInput;
 use Carbon\Carbon;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 
 class UpdateCar extends Component implements Forms\Contracts\HasForms
@@ -82,17 +83,7 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
                             return $state;
                         })
                         ->searchable(),
-                    Select::make('model')
-                        ->label('Model')
-                        ->options(Model::all()->pluck('name', 'id'))
-                        ->dehydrateStateUsing(function ($state) {
-                            if (is_numeric($state)) {
-                                return Model::where('id', $state)->first()->name;
-                            }
-                            return $state;
-                        })
-                        ->required()
-                        ->searchable(),
+                    TextInput::make('model')->required(),
                     Select::make('body_type')
                         ->label('Body Type')
                         ->options(BodyType::all()->pluck('name', 'id'))
@@ -164,8 +155,15 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
 
     public function submit(): void
     {
-        $this->vehicle->update($this->form->getState());
-        Redirect::back();
+        try {
+            $this->vehicle->update($this->form->getState());
+            flash()->success('Vehicle has been updated successfully.');
+            Redirect::route('car.update', ['id' => $this->vehicle->id]);
+        } catch (\Throwable $th) {
+            Log::error($th);
+            flash()->error('An unexpected error occured while updating this item.');
+            Redirect::route('car.update', ['id' => $this->vehicle->id]);
+        }
     }
 
 

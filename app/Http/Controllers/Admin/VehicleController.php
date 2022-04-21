@@ -18,7 +18,6 @@ class VehicleController extends Controller
 
     public function update(Request $request){
         $vehicle = Vehicle::where('id', $request->id)->first();
-
         return view('admin.cars.update', ['vehicle' => $vehicle]);
     }
 }
