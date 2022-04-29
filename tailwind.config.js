@@ -14,6 +14,7 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Nunito', ...defaultTheme.fontFamily.sans],
+                inter: ['Inter var', ...defaultTheme.fontFamily.sans],
             },
             colors: {
                 danger: colors.rose,
