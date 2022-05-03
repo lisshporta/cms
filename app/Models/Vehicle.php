@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
+use Laravel\Scout\Attributes\SearchUsingFullText;
+use Laravel\Scout\Attributes\SearchUsingPrefix;
 
 class Vehicle extends Model
 {
-    use HasFactory, HasSlug;
+    use HasFactory, HasSlug, Searchable;
 
     protected $fillable = [
         'name',
@@ -28,24 +31,29 @@ class Vehicle extends Model
         'condition'
     ];
 
-    public function getSlugOptions() : SlugOptions
+    public function getSlugOptions(): SlugOptions
     {
         return SlugOptions::create()
-             ->generateSlugsFrom(function($model) {
+            ->generateSlugsFrom(function ($model) {
                 $randomID = random_int(100000, 999999);
                 return "{$randomID} {$model->name}";
             })
             ->saveSlugsTo('slug');
     }
 
-
-     /**
-     * Get the route key for the model.
-     *
-     * @return string
-     */
     public function getRouteKeyName()
     {
         return 'slug';
+    }
+
+    #[SearchUsingPrefix(['make', 'model'])]
+    #[SearchUsingFullText(['name'])]
+    public function toSearchableArray()
+    {
+        return [
+            'name' => $this->name,
+            'make' => $this->make,
+            'model' => $this->model,
+        ];
     }
 }
