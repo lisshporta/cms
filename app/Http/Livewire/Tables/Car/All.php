@@ -48,12 +48,7 @@ class All extends Component implements Tables\Contracts\HasTable
 
     protected function getTableEmptyStateActions(): array
     {
-        return [
-            Tables\Actions\ButtonAction::make('create')
-                ->label('New Car')
-                ->url(route('car.new'))
-                ->icon('heroicon-o-plus'),
-        ];
+        return [];
     }
 
 
