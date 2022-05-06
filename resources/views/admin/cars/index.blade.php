@@ -7,7 +7,7 @@
     </x-slot>
 
     <div class="pb-6 flex flex-row justify-end">
-        <x-volt-button href="{{route('car.new')}}" title='New Car' />
+        <x-volt-button href="{{route('car.new')}}" title='Add A Car' />
     </div>
 
     <div class="pb-20">
