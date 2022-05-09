@@ -13,7 +13,7 @@
         return "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700";
     }
 @endphp
-<nav class="bg-white shadow" x-data="{ open: false }">
+<nav class="bg-white shadow absolute w-full z-20" x-data="{ open: false }">
     <div class="mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex justify-between h-20">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
