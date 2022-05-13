@@ -3,6 +3,7 @@
 use App\Http\Controllers\Admin\VehicleController as AdminVehicleController;
 use App\Http\Controllers\ExploreController;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\Pages\ExplorePage;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -17,7 +18,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', [HomeController::class,  'index'])->name('home');
-Route::get('/explore', [ExploreController::class,  'index'])->name('explore');
+Route::get('/explore', ExplorePage::class)->name('explore');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('dashboard')->group(function () {
