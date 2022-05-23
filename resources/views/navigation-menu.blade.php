@@ -16,7 +16,7 @@
                         {{ __('Dashboard') }}
                     </x-jet-nav-link>
                     <x-jet-nav-link href="{{ route('cars.index') }}" :active="request()->routeIs('cars.index')">
-                        Cars
+                        Inventory
                     </x-jet-nav-link>
                 </div>
             </div>
@@ -144,7 +144,7 @@
                 {{ __('Dashboard') }}
             </x-jet-responsive-nav-link>
             <x-jet-responsive-nav-link href="{{ route('cars.index') }}" :active="request()->routeIs('cars.index')">
-                Cars
+                Inventory
             </x-jet-responsive-nav-link>
         </div>
 

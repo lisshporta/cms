@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Closure;
+use Filament\Tables\Columns\BooleanColumn;
 
 class All extends Component implements Tables\Contracts\HasTable
 {
@@ -32,7 +33,9 @@ class All extends Component implements Tables\Contracts\HasTable
                     'warning' => 'Used',
                     'success' => 'New',
                 ])->sortable(),
-            TextColumn::make('fuel_type')->label('Fuel')->sortable(),
+            BooleanColumn::make('published')->label('Listed')
+                ->trueColor('danger')
+                ->falseColor('secondary')
         ];
     }
 

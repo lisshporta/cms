@@ -14,6 +14,10 @@ class Vehicle extends Model
 {
     use HasFactory, HasSlug, Searchable;
 
+    protected $casts = [
+        'published' => 'boolean',
+    ];
+
     protected $fillable = [
         'name',
         'make',
@@ -28,7 +32,9 @@ class Vehicle extends Model
         'door_count',
         'seat_count',
         'gearbox',
-        'condition'
+        'condition',
+        'cover_path',
+        'published'
     ];
 
     public function getSlugOptions(): SlugOptions

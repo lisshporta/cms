@@ -13,7 +13,7 @@
         return "border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700";
     }
 @endphp
-<nav class="bg-white shadow absolute w-full z-20" x-data="{ open: false }">
+<nav class="bg-white shadow w-full z-20 top-0 sticky inset-x-0" x-data="{ open: false }">
     <div class="mx-auto px-2 sm:px-6 lg:px-8">
         <div class="relative flex justify-between h-20">
             <div class="absolute inset-y-0 left-0 flex items-center sm:hidden">
@@ -35,6 +35,7 @@
                     </a>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
+                    <a href="{{route('home')}}" class="{{renderMenuActiveLink('home')}} inline-flex items-center px-1 pt-1 border-b-4 font-medium text-sm"> Home </a>
                     <a href="{{route('explore')}}" class="{{renderMenuActiveLink('explore')}} inline-flex items-center px-1 pt-1 border-b-4 font-medium text-sm"> Explore </a>
                     <a href="#" class="border-transparent text-gray-500 hover:border-gray-300 hover:text-gray-700 inline-flex items-center px-1 pt-1 border-b-2 font-medium text-sm"> Contact </a>
                 </div>
@@ -57,7 +58,7 @@
             <a href="{{route('home')}}" class="{{renderMenuActiveLink('home', true)}} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Home</a>
             <a href="{{route('explore')}}" class="{{renderMenuActiveLink('explore', true)}} block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Explore</a>
             <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Contact Us</a>
-            <a href="#" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sign In</a>
+            <a href="{{route('login')}}" class="border-transparent text-gray-500 hover:bg-gray-50 hover:border-gray-300 hover:text-gray-700 block pl-3 pr-4 py-2 border-l-4 text-base font-medium">Sign In</a>
         </div>
     </div>
 </nav>
