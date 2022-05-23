@@ -20,8 +20,7 @@ class ExplorePage extends Component
 
     public function render()
     {
-        $listings = Vehicle::search($this->search);
-
+        $listings = Vehicle::search($this->search)->where('published', true);
 
         if($this->make){
             $listings->where('make', $this->make);

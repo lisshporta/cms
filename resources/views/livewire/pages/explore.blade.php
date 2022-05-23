@@ -110,7 +110,7 @@
                     @if (strcasecmp($make, $vehicle_make->name) == 0)
                         <span class="inline-flex items-center pr-1 text-volt-primary border-b-4 border-red-400">
                             {{ $vehicle_make->name }}
-                            c <button type="button" wire:click="$set('make', null)"
+                            <button type="button" wire:click="$set('make', null)"
                                 class="flex-shrink-0 ml-2 h-4 w-4 rounded-full inline-flex items-center justify-center text-red-400 hover:bg-red-200 hover:text-red-500 focus:outline-none focus:bg-red-500 focus:text-white">
                                 <span class="sr-only">Remove large option</span>
                                 <svg class="h-2 w-2" stroke="currentColor" fill="none" viewBox="0 0 8 8">
@@ -178,8 +178,15 @@
             <div class="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-8 py-8">
                 @forelse($listings as $listing)
                     <div class="w-full bg-white flex flex-col col-span-1 max-w-sm sm:max-w-xs">
-                        <div style="background-color: #FFF0F0" class="w-full h-52 flex justify-center items-center">
-                        </div>
+                        
+                        @if ($listing->cover_path)
+                            <img class="w-full h-52" src="{{asset($listing->cover_path)}}" />
+                        @else
+                           <div style="background-color: #FFF0F0" class="w-full h-52 flex justify-center items-center">
+                        </div> 
+                        @endif
+                        
+                        
                         <div class="bg-white h-40 flex flex-col justify-between px-3">
                             <div class="flex flex-row justify-between h-full py-3">
                                 <div class="flex flex-col break-words">

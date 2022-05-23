@@ -15,6 +15,8 @@ use Filament\Forms\Components\TextInput;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Toggle;
 
 class UpdateCar extends Component implements Forms\Contracts\HasForms
 {
@@ -39,12 +41,27 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
             'seat_count' => $this->vehicle->seat_count,
             'gearbox' => $this->vehicle->gearbox,
             'condition' => $this->vehicle->condition,
+            'cover_path' => $this->vehicle->cover_path,
+            'published' => $this->vehicle->published,
         ]);
     }
 
     protected function getFormSchema(): array
     {
         return [
+            Grid::make([
+                'default' => 1,
+                'sm' => 2,
+                'lg' => 4,
+            ])
+                ->schema([
+                    FileUpload::make('cover_path')->image()->directory('images')->label('Cover Image')->columnSpan([
+                        'default' => 1,
+                        'sm' => 1,
+                        'lg' => 3,
+                    ]),
+                    Toggle::make('published')->default(false)->inline(false)
+                ]),
             Grid::make([
                 'default' => 1,
                 'sm' => 2,
@@ -127,7 +144,7 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
                 'lg' => 4,
             ])
                 ->schema([
-                    TextInput::make('price')->mask(fn (TextInput\Mask $mask) => $mask
+                    TextInput::make('price')->required()->mask(fn (TextInput\Mask $mask) => $mask
                         ->patternBlocks([
                             'money' => fn (TextInput\Mask $mask) => $mask
                                 ->numeric()

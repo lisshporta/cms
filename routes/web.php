@@ -25,7 +25,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route::prefix('cars')->group(function () {
+        Route::prefix('inventory')->group(function () {
             Route::get('/', [AdminVehicleController::class,  'index'])->name('cars.index');
             Route::get('/new', [AdminVehicleController::class,  'new'])->name('car.new');
             Route::get('/edit/{id}', [AdminVehicleController::class,  'update'])->name('car.update');
