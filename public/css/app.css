@@ -4471,6 +4471,10 @@ select{
   padding-bottom: 0.25rem;
 }
 
+.pt-3{
+  padding-top: 0.75rem;
+}
+
 .pt-8{
   padding-top: 2rem;
 }
@@ -4531,10 +4535,6 @@ select{
   padding-left: 3rem;
 }
 
-.pt-3{
-  padding-top: 0.75rem;
-}
-
 .text-left{
   text-align: left;
 }
@@ -4553,6 +4553,10 @@ select{
 
 .font-mono{
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+.font-campton{
+  font-family: Campton, sans-serif;
 }
 
 .text-sm{
@@ -5044,6 +5048,17 @@ select{
 
 .ease-linear{
   transition-timing-function: linear;
+}
+
+@font-face {
+    font-family: "Campton";
+    src: url(/fonts/Campton-LightDEMO.otf?018b9bfe2f310403ad8971f9058d440d);
+}
+
+@font-face {
+    font-family: "Campton";
+    src: url(/fonts/Campton-BoldDEMO.otf?ce22d0ef1abfafb9629086d6191158e6);
+    font-weight: bold;
 }
 
 .focus-within\:border-primary-600:focus-within{
@@ -6610,24 +6625,16 @@ select{
     display: none;
   }
 
-  .md\:w-auto{
-    width: auto;
-  }
-
   .md\:w-72{
     width: 18rem;
   }
 
-  .md\:max-w-md{
-    max-width: 28rem;
-  }
-
-  .md\:max-w-xl{
-    max-width: 36rem;
-  }
-
   .md\:max-w-lg{
     max-width: 32rem;
+  }
+
+  .md\:max-w-md{
+    max-width: 28rem;
   }
 
   .md\:grid-cols-3{

@@ -9,7 +9,7 @@
             @else
             <div class="rounded-full bg-gray-600 h-32 w-32"></div>
             @endif
-            <div class="text-center pt-3 text-sm text-gray-500">@dynamic</div>
+            <div class="text-center pt-3 text-base text-gray-500">@dynamic</div>
             <div class="text-center py-4 font-bold text-3xl">{{ $owner->name }}</div>
             <div class="text-center text-base w-3/4 text-black">{{$owner->description}}</div>
         </div>
