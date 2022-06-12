@@ -20,7 +20,8 @@ module.exports = {
                 primary: colors.blue,
                 success: colors.green,
                 warning: colors.yellow,
-                "volt-primary": "#FD4F4F"
+                "volt-primary": "#FD4F4F",
+                "volt-primary-disabled": "#E34747",
             },
         },
     },
