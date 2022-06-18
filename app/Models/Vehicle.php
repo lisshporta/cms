@@ -34,7 +34,8 @@ class Vehicle extends Model
         'gearbox',
         'condition',
         'cover_path',
-        'published'
+        'published',
+        'user_id'
     ];
 
     public function getSlugOptions(): SlugOptions

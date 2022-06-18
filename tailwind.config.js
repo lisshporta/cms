@@ -14,13 +14,15 @@ module.exports = {
         extend: {
             fontFamily: {
                 sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+                campton: ['Campton', 'sans-serif']
             },
             colors: {
                 danger: colors.rose,
                 primary: colors.blue,
                 success: colors.green,
                 warning: colors.yellow,
-                "volt-primary": "#FD4F4F"
+                "volt-primary": "#FD4F4F",
+                "volt-primary-disabled": "#E34747",
             },
         },
     },

@@ -10,6 +10,7 @@ use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\TextColumn;
 use Closure;
 use Filament\Tables\Columns\BooleanColumn;
+use Illuminate\Support\Facades\Auth;
 
 class All extends Component implements Tables\Contracts\HasTable
 {
@@ -17,7 +18,7 @@ class All extends Component implements Tables\Contracts\HasTable
 
     protected function getTableQuery(): Builder
     {
-        return Vehicle::query();
+        return Vehicle::query()->where('user_id', Auth::user()->id);
     }
 
     protected function getTableColumns(): array

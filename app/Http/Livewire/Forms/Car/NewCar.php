@@ -15,6 +15,7 @@ use Filament\Forms\Components\TextInput;
 use Carbon\Carbon;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Toggle;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\URL;
@@ -132,7 +133,7 @@ class NewCar extends Component implements Forms\Contracts\HasForms
 
     public function submit()
     {
-        $vehicle = Vehicle::create($this->form->getState());
+        $vehicle = Vehicle::create(['user_id' => Auth::user()->id, ...$this->form->getState()]);
         if (!$vehicle) {
             flash()->error('An unexpected error occured while adding this vehicle.');
             Redirect::route('car.new');
