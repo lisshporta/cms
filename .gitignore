@@ -16,3 +16,6 @@ yarn-error.log
 
 /docker-compose/db/data
 /docker-compose/nginx/nginx.conf
+public/.DS_Store
+public/fonts/.DS_Store
+.DS_Store

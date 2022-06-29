@@ -2,6 +2,7 @@
 
 declare(strict_types=1);
 
+use App\Http\Controllers\Client\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\Client\Home as TenantHome;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
@@ -24,5 +25,7 @@ Route::middleware([
     InitializeTenancyBySubdomain::class,
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
-    Route::get('/', TenantHome::class)->name('client-home');
+    Route::get('/', TenantHome::class)->name('home');
+    Route::get('/contact', [ContactController::class, 'index'])->name('contact');
+    Route::post('/contact', [ContactController::class, 'submit'])->name('contact-post');
 });

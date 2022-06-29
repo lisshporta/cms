@@ -117,4 +117,74 @@
             </x-slot>
         </x-jet-form-section>
     </div>
+    <x-jet-section-border />
+    <div class="mt-10 sm:mt-0">
+        <x-jet-form-section submit="updateProfileInformation">
+            <x-slot name="title">
+               Update Contact Information
+            </x-slot>
+
+            <x-slot name="description">
+                Update your contact information so potential customers can reach you.
+            </x-slot>
+
+            <x-slot name="form" class="flex flex-col">
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="support_email" value="Email" />
+                    <x-jet-input id="support_email" type="email" class="mt-1 block w-full" wire:model.defer="state.support_email" />
+                    <x-jet-input-error for="support_email" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="support_phone" value="Phone" />
+                    <x-jet-input id="support_phone" type="text" class="mt-1 block w-full" wire:model.defer="state.support_phone" />
+                    <x-jet-input-error for="support_phone" class="mt-2" />
+                </div>
+            </x-slot>
+
+            <x-slot name="actions">
+                <x-jet-action-message class="mr-3" on="saved">
+                    {{ __('Saved.') }}
+                </x-jet-action-message>
+
+                <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+                    {{ __('Save') }}
+                </x-jet-button>
+            </x-slot>
+        </x-jet-form-section>
+    </div>
+    <x-jet-section-border />
+    <div class="mt-10 sm:mt-0">
+        <x-jet-form-section submit="updateProfileInformation">
+            <x-slot name="title">
+               Update Business Address
+            </x-slot>
+
+            <x-slot name="description">
+                Update your business address for potential customers to find you. You can get the coordinates of your address <a target="blank" href="https://www.latlong.net/" class="text-blue-500 underline">here</a>.
+            </x-slot>
+
+            <x-slot name="form" class="flex flex-col">
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="lat" value="Latitude" />
+                    <x-jet-input id="lat" type="text" class="mt-1 block w-full" wire:model.defer="state.lat" />
+                    <x-jet-input-error for="lat" class="mt-2" />
+                </div>
+                <div class="col-span-6 sm:col-span-4">
+                    <x-jet-label for="lng" value="Longitude" />
+                    <x-jet-input id="lng" type="text" class="mt-1 block w-full" wire:model.defer="state.lng" />
+                    <x-jet-input-error for="lng" class="mt-2" />
+                </div>
+            </x-slot>
+
+            <x-slot name="actions">
+                <x-jet-action-message class="mr-3" on="saved">
+                    {{ __('Saved.') }}
+                </x-jet-action-message>
+
+                <x-jet-button wire:loading.attr="disabled" wire:target="photo">
+                    {{ __('Save') }}
+                </x-jet-button>
+            </x-slot>
+        </x-jet-form-section>
+    </div>
 </div>

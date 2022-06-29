@@ -20,7 +20,7 @@
     <script src="{{ mix('js/app.js') }}" defer></script>
 </head>
 
-<body class="font-sans antialiased h-full bg-gray-100">
+<body class="font-campton antialiased h-full bg-gray-100">
     <!-- Navigation Menu -->
     @include('includes.nav')
 
@@ -29,6 +29,7 @@
         {{ $slot }}
     </main>
     @stack('modals')
+    @stack('scripts')
     @livewireScripts
 </body>
 </html>

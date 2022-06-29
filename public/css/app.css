@@ -1,3 +1,4 @@
+@import url(http://fonts.cdnfonts.com/css/campton);
 @charset "UTF-8";
 
 /* node_modules/filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css */
@@ -3099,6 +3100,26 @@ select{
   margin-bottom: -0.5rem;
 }
 
+.my-20{
+  margin-top: 5rem;
+  margin-bottom: 5rem;
+}
+
+.my-3{
+  margin-top: 0.75rem;
+  margin-bottom: 0.75rem;
+}
+
+.my-2{
+  margin-top: 0.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.my-14{
+  margin-top: 3.5rem;
+  margin-bottom: 3.5rem;
+}
+
 .ml-3{
   margin-left: 0.75rem;
 }
@@ -3251,10 +3272,6 @@ select{
   margin-left: auto;
 }
 
-.mt-0{
-  margin-top: 0px;
-}
-
 .block{
   display: block;
 }
@@ -3357,6 +3374,22 @@ select{
 
 .h-2{
   height: 0.5rem;
+}
+
+.h-1{
+  height: 0.25rem;
+}
+
+.h-0\.5{
+  height: 0.125rem;
+}
+
+.h-3\/5{
+  height: 60%;
+}
+
+.h-4\/5{
+  height: 80%;
 }
 
 .max-h-60{
@@ -3899,6 +3932,12 @@ select{
   margin-left: calc(1rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
+.space-y-12 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-y-reverse: 0;
+  margin-top: calc(3rem * calc(1 - var(--tw-space-y-reverse)));
+  margin-bottom: calc(3rem * var(--tw-space-y-reverse));
+}
+
 .divide-y > :not([hidden]) ~ :not([hidden]){
   --tw-divide-y-reverse: 0;
   border-top-width: calc(1px * calc(1 - var(--tw-divide-y-reverse)));
@@ -3960,6 +3999,10 @@ select{
 
 .break-words{
   overflow-wrap: break-word;
+}
+
+.break-all{
+  word-break: break-all;
 }
 
 .rounded-md{
@@ -4290,6 +4333,41 @@ select{
   background-color: rgb(191 219 254 / var(--tw-bg-opacity));
 }
 
+.bg-slate-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(148 163 184 / var(--tw-bg-opacity));
+}
+
+.bg-slate-300{
+  --tw-bg-opacity: 1;
+  background-color: rgb(203 213 225 / var(--tw-bg-opacity));
+}
+
+.bg-slate-200{
+  --tw-bg-opacity: 1;
+  background-color: rgb(226 232 240 / var(--tw-bg-opacity));
+}
+
+.bg-slate-100{
+  --tw-bg-opacity: 1;
+  background-color: rgb(241 245 249 / var(--tw-bg-opacity));
+}
+
+.bg-slate-50{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 250 252 / var(--tw-bg-opacity));
+}
+
+.bg-gray-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(156 163 175 / var(--tw-bg-opacity));
+}
+
+.bg-red-400{
+  --tw-bg-opacity: 1;
+  background-color: rgb(248 113 113 / var(--tw-bg-opacity));
+}
+
 .bg-opacity-25{
   --tw-bg-opacity: 0.25;
 }
@@ -4539,14 +4617,6 @@ select{
   padding-left: 3rem;
 }
 
-.pl-16{
-  padding-left: 4rem;
-}
-
-.pr-3{
-  padding-right: 0.75rem;
-}
-
 .text-left{
   text-align: left;
 }
@@ -4620,6 +4690,14 @@ select{
 
 .font-normal{
   font-weight: 400;
+}
+
+.font-light{
+  font-weight: 300;
+}
+
+.font-thin{
+  font-weight: 100;
 }
 
 .uppercase{
@@ -4864,6 +4942,16 @@ select{
   color: rgb(248 113 113 / var(--tw-text-opacity));
 }
 
+.text-red-200{
+  --tw-text-opacity: 1;
+  color: rgb(254 202 202 / var(--tw-text-opacity));
+}
+
+.text-blue-500{
+  --tw-text-opacity: 1;
+  color: rgb(59 130 246 / var(--tw-text-opacity));
+}
+
 .underline{
   -webkit-text-decoration-line: underline;
           text-decoration-line: underline;
@@ -5060,17 +5148,6 @@ select{
 
 .ease-linear{
   transition-timing-function: linear;
-}
-
-@font-face {
-    font-family: "Campton";
-    src: url(/fonts/Campton-LightDEMO.otf?018b9bfe2f310403ad8971f9058d440d);
-}
-
-@font-face {
-    font-family: "Campton";
-    src: url(/fonts/Campton-BoldDEMO.otf?ce22d0ef1abfafb9629086d6191158e6);
-    font-weight: bold;
 }
 
 .focus-within\:border-primary-600:focus-within{
@@ -5290,6 +5367,18 @@ select{
           text-decoration-line: underline;
 }
 
+.hover\:shadow-sm:hover{
+  --tw-shadow: 0 1px 2px 0 rgb(0 0 0 / 0.05);
+  --tw-shadow-colored: 0 1px 2px 0 var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
+.hover\:shadow-md:hover{
+  --tw-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);
+  --tw-shadow-colored: 0 4px 6px -1px var(--tw-shadow-color), 0 2px 4px -2px var(--tw-shadow-color);
+  box-shadow: var(--tw-ring-offset-shadow, 0 0 #0000), var(--tw-ring-shadow, 0 0 #0000), var(--tw-shadow);
+}
+
 .focus\:z-10:focus{
   z-index: 10;
 }
@@ -5342,11 +5431,6 @@ select{
 .focus\:border-primary-300:focus{
   --tw-border-opacity: 1;
   border-color: rgb(147 197 253 / var(--tw-border-opacity));
-}
-
-.focus\:border-indigo-500:focus{
-  --tw-border-opacity: 1;
-  border-color: rgb(99 102 241 / var(--tw-border-opacity));
 }
 
 .focus\:bg-indigo-600:focus{
@@ -6542,21 +6626,12 @@ select{
     padding-top: 0.5rem;
   }
 
-  .sm\:pl-14{
-    padding-left: 3.5rem;
-  }
-
   .sm\:text-left{
     text-align: left;
   }
 
   .sm\:text-right{
     text-align: right;
-  }
-
-  .sm\:text-sm{
-    font-size: 0.875rem;
-    line-height: 1.25rem;
   }
 }
 
@@ -6762,6 +6837,21 @@ select{
     padding-right: 2rem;
   }
 
+  .md\:px-0{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .md\:px-12{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
+
+  .md\:py-8{
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+  }
+
   .md\:pt-0{
     padding-top: 0px;
   }
@@ -6898,6 +6988,16 @@ select{
     padding-left: 2rem;
     padding-right: 2rem;
   }
+
+  .lg\:px-0{
+    padding-left: 0px;
+    padding-right: 0px;
+  }
+
+  .lg\:px-12{
+    padding-left: 3rem;
+    padding-right: 3rem;
+  }
 }
 
 @media (min-width: 1280px){
@@ -7014,6 +7114,16 @@ select{
     padding-left: 0px;
     padding-right: 0px;
   }
+
+  .xl\:px-4{
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .xl\:px-2{
+    padding-left: 0.5rem;
+    padding-right: 0.5rem;
+  }
 }
 
 @media (min-width: 1536px){
@@ -7126,4 +7236,3 @@ select{
     grid-template-columns: repeat(12, minmax(0, 1fr));
   }
 }
-

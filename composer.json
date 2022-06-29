@@ -20,7 +20,6 @@
         "meilisearch/meilisearch-php": "^0.23.2",
         "pelmered/fake-car": "^1.7",
         "spatie/laravel-flash": "^1.9",
-        "spatie/laravel-multitenancy": "^2.0",
         "spatie/laravel-sluggable": "^3.4",
         "stancl/tenancy": "^3.5"
     },

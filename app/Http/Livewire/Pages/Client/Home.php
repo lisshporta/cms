@@ -16,7 +16,7 @@ class Home extends Component
         $listings = Vehicle::where('published', true)->where('user_id', tenant('user_id'))->paginate(20);
         $owner = User::where('id', tenant('user_id'))->first();
 
-        return view('livewire.pages.client.home', [
+        return view('client.home', [
             'listings' => $listings,
             'owner' => $owner
         ])->layout('layouts.public.main');

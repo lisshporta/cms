@@ -24,9 +24,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'description' => ['nullable', 'string'],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
+            'support_email' => ['nullable', 'email', 'max:255'],
+            'support_phone' => ['nullable', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
+            'lat' => ['nullable', 'numeric', 'between:-90,90', 'required_with:lng'],
+            'lng' => ['nullable', 'numeric', 'between:-180,180', 'required_with:lat'],
+            
         ], [
             'domain.required' => 'The username field is required',
             'domain.unique' => 'This username already exists.',
+            'lat.required_with' => 'This field is required when the Longitude field is present.',
+            'lng.required_with' => 'This field is required when the Latitude field is present.',
+            'lat.numeric' => 'This field is not valid.',
+            'lng.numeric' => 'This field is not valid.',
         ])->validateWithBag('updateProfileInformation');
 
         if (isset($input['photo'])) {
@@ -42,6 +51,10 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'email' => $input['email'],
                 'domain' => $input['domain'],
                 'description' => $input['description'],
+                'support_email' => $input['support_email'],
+                'support_phone' => $input['support_phone'],
+                'lat' => $input['lat'],
+                'lng' => $input['lng']
             ])->save();
         }
     }
