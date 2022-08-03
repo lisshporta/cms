@@ -1,0 +1,77 @@
+version: "3"
+
+services:
+    app:
+        build:
+            args:
+                user: volt-user
+                uid: 1000
+            context: ./
+            dockerfile: Dockerfile
+        image: volt-php
+        restart: unless-stopped
+        working_dir: /var/www/
+        volumes:
+            - ../:/var/www
+            - './compose/supervisor/laravel-horizon.conf:/etc/supervisor/conf.d/laravel-horizon.conf'
+            - './compose/supervisor/supervisord.conf:/etc/supervisor/supervisord.conf'
+            - ./compose/php/uploads.ini:/usr/local/etc/php/conf.d/uploads.ini:rw,delegated
+        networks:
+            - volt
+
+    db:
+        image: mariadb
+        restart: always
+        volumes:
+            # - db:/var/lib/mysql
+            # If you want to persist data on the host, comment the line above this one...
+            # and uncomment the line under this one.
+            - ./compose/db/data:/var/lib/mysql:rw,delegated
+        environment:
+            MYSQL_USER: volt
+            MYSQL_PASSWORD: volt
+            MYSQL_DATABASE: volt
+            MYSQL_ROOT_PASSWORD: volt
+        ports:
+            - "3306:3306"
+        networks:
+            - volt
+
+    redis:
+        image: 'redis:6.2-alpine'
+        restart: always
+        ports:
+            - '6379:6379'
+        command: >-
+            redis-server --save 20 1 --loglevel warning
+        networks:
+            - volt
+
+    meilisearch:
+        image: "getmeili/meilisearch:latest"
+        ports:
+            - "7700:7700"
+        networks:
+            - volt
+        healthcheck:
+            test: [ "CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health" ]
+            retries: 3
+            timeout: 5s
+
+    nginx:
+        image: nginx:1.21.6-alpine
+        restart: unless-stopped
+        ports:
+            - 80:80
+        volumes:
+            - ../:/var/www
+            - ./compose/nginx:/etc/nginx/conf.d/
+        networks:
+            - volt
+
+volumes:
+    db:
+
+networks:
+    volt:
+        driver: bridge
