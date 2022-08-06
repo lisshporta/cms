@@ -5,6 +5,7 @@ declare(strict_types=1);
 use App\Http\Controllers\Client\ContactController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Livewire\Pages\Client\Home as TenantHome;
+use App\Http\Livewire\Pages\Client\SingleVehicleView;
 use Stancl\Tenancy\Middleware\InitializeTenancyBySubdomain;
 use Stancl\Tenancy\Middleware\PreventAccessFromCentralDomains;
 
@@ -26,6 +27,7 @@ Route::middleware([
     PreventAccessFromCentralDomains::class,
 ])->group(function () {
     Route::get('/', TenantHome::class)->name('home');
+    Route::get('/vehicle/{slug}', SingleVehicleView::class)->name('view-vehicle');
     Route::get('/contact', [ContactController::class, 'index'])->name('contact');
     Route::post('/contact', [ContactController::class, 'submit'])->name('contact-post');
 });

@@ -16,9 +16,9 @@ use Carbon\Carbon;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Toggle;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-use Illuminate\Support\Facades\URL;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\TagsInput;
 
 class NewCar extends Component implements Forms\Contracts\HasForms
 {
@@ -127,7 +127,15 @@ class NewCar extends Component implements Forms\Contracts\HasForms
                         ])
                         ->default('Automatic')
                         ->required(),
+                ]),
+            TagsInput::make('features')->placeholder('eg. Android Auto'),
+            Repeater::make('sections')
+                ->schema([
+                    TextInput::make('name')->required(),
+                    TagsInput::make('features')->placeholder('eg. Android Auto')->required(),
                 ])
+                ->columns(1),
+            FileUpload::make('images')->image()->multiple()->directory('images')->label('Images'),
         ];
     }
 

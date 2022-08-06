@@ -16,7 +16,9 @@ use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\TagsInput;
 use Filament\Forms\Components\Toggle;
+use Filament\Forms\Components\Repeater;
 
 class UpdateCar extends Component implements Forms\Contracts\HasForms
 {
@@ -43,6 +45,9 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
             'condition' => $this->vehicle->condition,
             'cover_path' => $this->vehicle->cover_path,
             'published' => $this->vehicle->published,
+            'images' => $this->vehicle->images,
+            'features' => $this->vehicle->features,
+            'sections' => $this->vehicle->sections,
         ]);
     }
 
@@ -161,7 +166,17 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
                         ->default('Automatic')
                         ->afterStateHydrated(fn ($state) => $state)
                         ->required(),
+                ]),
+            TagsInput::make('features')->placeholder('eg. Android Auto'),
+
+            Repeater::make('sections')
+                ->schema([
+                    TextInput::make('name')->required(),
+                    TagsInput::make('features')->placeholder('eg. Android Auto')->required(),
                 ])
+                ->columns(1),
+
+            FileUpload::make('images')->image()->multiple()->directory('images')->label('Images'),
         ];
     }
 
