@@ -16,6 +16,9 @@ class Vehicle extends Model
 
     protected $casts = [
         'published' => 'boolean',
+        'features' => 'array',
+        'sections' => 'array',
+        'images' => 'array',
     ];
 
     protected $fillable = [
@@ -35,7 +38,10 @@ class Vehicle extends Model
         'condition',
         'cover_path',
         'published',
-        'user_id'
+        'user_id',
+        'features',
+        'sections',
+        'images'
     ];
 
     public function getSlugOptions(): SlugOptions
@@ -62,5 +68,10 @@ class Vehicle extends Model
             'make' => $this->make,
             'model' => $this->model,
         ];
+    }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
     }
 }

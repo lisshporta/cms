@@ -5,6 +5,7 @@ namespace App\Http\Livewire\Pages;
 use App\Models\BodyType;
 use App\Models\Make;
 use App\Models\Vehicle;
+use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -20,7 +21,11 @@ class ExplorePage extends Component
 
     public function render()
     {
-        $listings = Vehicle::search($this->search)->where('published', true);
+        $listings = Vehicle::search($this->search)->query(function (Builder $builder) {
+            $builder->with('user.tenant');
+        });
+
+        $listings->where('published', true);
 
         if($this->make){
             $listings->where('make', $this->make);
