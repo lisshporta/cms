@@ -20,13 +20,13 @@
 # Table of contents
 
 <!-- - [Usage](#usage) -->
+
 - [Installation](#installation)
     - [Environmental Variables](#environmental-variables)
 
 <!-- 
 # Usage
 Login to the latest version of the dashboard at [admin..com](https://admin.metroipo.com). -->
-
 
 # Installation
 
@@ -42,29 +42,24 @@ composer dump-autoload
 # Docker
 
 To start building images and run containers, run the following
+
 ```bash
 docker-compose up -d
 ```
 
-After containers are running, run the setup file to install dependencies, run migrations and seed the database with
-
-```bash
-./docker-compose/setup.sh
-```
-
-> Hint, we can check if Laravel Horizon is running with `supervisor`, it's a bit inconsistent, so try restarting if it fails
-We can restart with `docker-compose exec app supervisord` and check if laravel horizon is running with `docker-compose exec app supervisorctl`
-
+> Hint, we can check if Laravel Horizon is running with `supervisor`, it's a bit inconsistent, so try restarting if it fails We can restart with `docker-compose exec app supervisord` and check if laravel horizon is running with `docker-compose exec app supervisorctl`
 
 ### Environmental Variables
 
-Before running a build or the development server, be sure to  the [dotenv](https://github.com/motdotla/dotenv) files in the root directory.
+Before running a build or the development server, be sure to the [dotenv](https://github.com/motdotla/dotenv) files in
+the root directory.
 
 ```sh
 mv .env.example .env
 ```
 
-The following variables are required for database connectivity: 
+The following variables are required for database connectivity:
+
 - `DB_CONNECTION`
 - `DB_HOST`
 - `DB_PORT`
@@ -72,7 +67,8 @@ The following variables are required for database connectivity:
 - `DB_USERNAME`
 - `DB_PASSWORD`
 
-The following is required for SMTP capabilities (sending emails):
+The following is required for sending emails:
+
 - `MAIL_MAILER`
 - `MAIL_HOST`
 - `MAIL_PORT`
@@ -80,12 +76,12 @@ The following is required for SMTP capabilities (sending emails):
 - `MAIL_PASSWORD`
 - `MAIL_ENCRYPTION`
 
-
 After installing the dependencies and configuring environmental variables,go ahead and generate the `jwt` key with
 
 ```sh
 php artisan jwt:secret
 ```
+
 Then run the migrations and finally seed the database with the following:
 
 ```sh
