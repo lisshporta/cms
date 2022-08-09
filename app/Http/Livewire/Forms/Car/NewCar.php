@@ -5,20 +5,19 @@ namespace App\Http\Livewire\Forms\Car;
 use App\Models\BodyType;
 use App\Models\FuelType;
 use App\Models\Make;
-use App\Models\Model;
 use App\Models\Vehicle;
-use Filament\Forms;
-use Livewire\Component;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Carbon\Carbon;
+use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
+use Filament\Forms\Components\TextInput;
 use Filament\Forms\Components\Toggle;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\TagsInput;
+use Livewire\Component;
 
 class NewCar extends Component implements Forms\Contracts\HasForms
 {
@@ -43,7 +42,7 @@ class NewCar extends Component implements Forms\Contracts\HasForms
                         'sm' => 1,
                         'lg' => 3,
                     ]),
-                    Toggle::make('published')->default(false)->inline(false)
+                    Toggle::make('published')->default(false)->inline(false),
                 ]),
             Grid::make([
                 'default' => 1,
@@ -142,7 +141,7 @@ class NewCar extends Component implements Forms\Contracts\HasForms
     public function submit()
     {
         $vehicle = Vehicle::create(['user_id' => Auth::user()->id, ...$this->form->getState()]);
-        if (!$vehicle) {
+        if (! $vehicle) {
             flash()->error('An unexpected error occured while adding this vehicle.');
             Redirect::route('car.new');
         }
@@ -150,7 +149,6 @@ class NewCar extends Component implements Forms\Contracts\HasForms
         flash()->success('Vehicle has been added successfully.');
         Redirect::route('car.update', ['id' => $vehicle->id]);
     }
-
 
     public function render()
     {

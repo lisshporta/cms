@@ -20,9 +20,10 @@ class TenantFactory extends Factory
     public function definition()
     {
         $company = $this->faker->company();
+
         return [
             'id' => $company,
-            'domain' => $company . '@voltcms.com'
+            'domain' => $company.'@voltcms.com',
         ];
     }
 }

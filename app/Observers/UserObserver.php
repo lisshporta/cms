@@ -8,6 +8,7 @@ use App\Models\User;
 class UserObserver
 {
     public $afterCommit = true;
+
     /**
      * Handle the User "created" event.
      *
@@ -43,7 +44,7 @@ class UserObserver
     public function deleted(User $user)
     {
         $tenant = Tenant::where('id', $user->id)->first();
-        if($tenant) {
+        if ($tenant) {
             $tenant->delete();
         }
     }

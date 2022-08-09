@@ -11,12 +11,14 @@ use Livewire\WithPagination;
 
 class ExplorePage extends Component
 {
-
     use WithPagination;
 
     public $search = null;
+
     public $make = null;
+
     public $body = null;
+
     protected $queryString = ['search', 'make', 'body'];
 
     public function render()
@@ -27,11 +29,11 @@ class ExplorePage extends Component
 
         $listings->where('published', true);
 
-        if($this->make){
+        if ($this->make) {
             $listings->where('make', $this->make);
         }
 
-        if($this->body){
+        if ($this->body) {
             $listings->where('body_type', $this->body);
         }
 

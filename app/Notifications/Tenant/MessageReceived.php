@@ -3,7 +3,6 @@
 namespace App\Notifications\Tenant;
 
 use Illuminate\Bus\Queueable;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
 use Illuminate\Notifications\Notification;
 
@@ -45,11 +44,11 @@ class MessageReceived extends Notification
         return (new MailMessage)
                     ->subject('New Message Submission')
                     ->greeting("You've received a message submission:")
-                    ->line('Email: ' . $this->message['email'])
-                    ->line('Name: ' . $this->message['name'])
-                    ->line('Phone: ' . $this->message['phone'])
-                    ->line('Subject: ' . $this->message['subject'])
-                    ->line('Message: ' . $this->message['message']);
+                    ->line('Email: '.$this->message['email'])
+                    ->line('Name: '.$this->message['name'])
+                    ->line('Phone: '.$this->message['phone'])
+                    ->line('Subject: '.$this->message['subject'])
+                    ->line('Message: '.$this->message['message']);
     }
 
     /**

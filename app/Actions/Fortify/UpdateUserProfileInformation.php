@@ -28,7 +28,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             'support_phone' => ['nullable', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
             'lat' => ['nullable', 'numeric', 'between:-90,90', 'required_with:lng'],
             'lng' => ['nullable', 'numeric', 'between:-180,180', 'required_with:lat'],
-            
+
         ], [
             'domain.required' => 'The username field is required',
             'domain.unique' => 'This username already exists.',
@@ -54,7 +54,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
                 'support_email' => $input['support_email'],
                 'support_phone' => $input['support_phone'],
                 'lat' => $input['lat'],
-                'lng' => $input['lng']
+                'lng' => $input['lng'],
             ])->save();
         }
     }

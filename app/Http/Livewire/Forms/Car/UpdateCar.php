@@ -5,20 +5,19 @@ namespace App\Http\Livewire\Forms\Car;
 use App\Models\BodyType;
 use App\Models\FuelType;
 use App\Models\Make;
-use App\Models\Model;
 use App\Models\Vehicle;
-use Filament\Forms;
-use Livewire\Component;
-use Filament\Forms\Components\Grid;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\TextInput;
 use Carbon\Carbon;
+use Filament\Forms;
+use Filament\Forms\Components\FileUpload;
+use Filament\Forms\Components\Grid;
+use Filament\Forms\Components\Repeater;
+use Filament\Forms\Components\Select;
+use Filament\Forms\Components\TagsInput;
+use Filament\Forms\Components\TextInput;
+use Filament\Forms\Components\Toggle;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-use Filament\Forms\Components\FileUpload;
-use Filament\Forms\Components\TagsInput;
-use Filament\Forms\Components\Toggle;
-use Filament\Forms\Components\Repeater;
+use Livewire\Component;
 
 class UpdateCar extends Component implements Forms\Contracts\HasForms
 {
@@ -65,7 +64,7 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
                         'sm' => 1,
                         'lg' => 3,
                     ]),
-                    Toggle::make('published')->default(false)->inline(false)
+                    Toggle::make('published')->default(false)->inline(false),
                 ]),
             Grid::make([
                 'default' => 1,
@@ -102,6 +101,7 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
                             if (is_numeric($state)) {
                                 return Make::where('id', $state)->first()->name;
                             }
+
                             return $state;
                         })
                         ->searchable(),
@@ -114,6 +114,7 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
                             if (is_numeric($state)) {
                                 return BodyType::where('id', $state)->first()->name;
                             }
+
                             return $state;
                         })
                         ->searchable(),
@@ -125,6 +126,7 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
                             if (is_numeric($state)) {
                                 return FuelType::where('id', $state)->first()->name;
                             }
+
                             return $state;
                         })
                         ->searchable(),
@@ -197,7 +199,6 @@ class UpdateCar extends Component implements Forms\Contracts\HasForms
             Redirect::route('car.update', ['id' => $this->vehicle->id]);
         }
     }
-
 
     public function render()
     {

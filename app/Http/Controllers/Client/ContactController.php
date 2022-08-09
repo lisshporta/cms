@@ -12,6 +12,7 @@ class ContactController extends Controller
     public function index()
     {
         $owner = User::where('id', tenant('user_id'))->first();
+
         return view('client.contact', ['owner' => $owner]);
     }
 
@@ -27,7 +28,7 @@ class ContactController extends Controller
 
         $owner = User::where('id', tenant('user_id'))->first();
 
-        if($owner){
+        if ($owner) {
             $owner->notify(new MessageReceived($request));
             flash()->success('Your message has been sent successfully.');
         } else {

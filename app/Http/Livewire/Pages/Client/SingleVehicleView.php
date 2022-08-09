@@ -8,12 +8,14 @@ use Livewire\Component;
 class SingleVehicleView extends Component
 {
     public $vehicle;
+
     public $similar;
 
-    public function mount($slug){
+    public function mount($slug)
+    {
         $this->vehicle = Vehicle::where('slug', $slug)->where('published', true)->with('user')->first();
-      
-        if(!$this->vehicle){
+
+        if (! $this->vehicle) {
             return abort(404);
         }
 

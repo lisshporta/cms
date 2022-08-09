@@ -6,8 +6,8 @@ use Illuminate\View\Component;
 
 class VoltButton extends Component
 {
-
     public $href;
+
     public $title;
 
     /**

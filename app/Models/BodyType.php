@@ -10,6 +10,6 @@ class BodyType extends Model
     use HasFactory;
 
     protected $fillable = [
-        'name'
+        'name',
     ];
 }

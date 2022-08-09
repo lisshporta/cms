@@ -2,9 +2,8 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use Illuminate\Database\Seeder;
 use App\Models\Make;
+use Illuminate\Database\Seeder;
 
 class MakeSeeder extends Seeder
 {
@@ -18,7 +17,7 @@ class MakeSeeder extends Seeder
         $makes = [
             'Honda',
             'BMW',
-            'Audi'
+            'Audi',
         ];
 
         foreach ($makes as $make) {

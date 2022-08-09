@@ -27,7 +27,7 @@ class VehicleFactory extends Factory
             'user_id' => function () {
                 return User::factory()->create()->id;
             },
-            'name' => $v['brand'] . ' ' . $v['model'],
+            'name' => $v['brand'].' '.$v['model'],
             'make' => $v['brand'],
             'model' => $v['model'],
             'body_type' => $this->faker->vehicleType,
@@ -40,7 +40,7 @@ class VehicleFactory extends Factory
             'door_count' => $this->faker->vehicleDoorCount,
             'seat_count' => $this->faker->vehicleSeatCount,
             'gearbox' => $this->faker->vehicleGearBoxType,
-            'published' => true
+            'published' => true,
         ];
     }
 }

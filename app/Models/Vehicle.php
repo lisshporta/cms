@@ -3,12 +3,12 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
-use Spatie\Sluggable\HasSlug;
-use Spatie\Sluggable\SlugOptions;
 use Illuminate\Database\Eloquent\Model;
-use Laravel\Scout\Searchable;
 use Laravel\Scout\Attributes\SearchUsingFullText;
 use Laravel\Scout\Attributes\SearchUsingPrefix;
+use Laravel\Scout\Searchable;
+use Spatie\Sluggable\HasSlug;
+use Spatie\Sluggable\SlugOptions;
 
 class Vehicle extends Model
 {
@@ -41,7 +41,7 @@ class Vehicle extends Model
         'user_id',
         'features',
         'sections',
-        'images'
+        'images',
     ];
 
     public function getSlugOptions(): SlugOptions
@@ -49,6 +49,7 @@ class Vehicle extends Model
         return SlugOptions::create()
             ->generateSlugsFrom(function ($model) {
                 $randomID = random_int(100000, 999999);
+
                 return "{$randomID} {$model->name}";
             })
             ->saveSlugsTo('slug');

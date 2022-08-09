@@ -3,14 +3,14 @@
 namespace App\Http\Livewire\Tables\Car;
 
 use App\Models\Vehicle;
-use Livewire\Component;
-use Filament\Tables;
-use Illuminate\Database\Eloquent\Builder;
-use Filament\Tables\Columns\BadgeColumn;
-use Filament\Tables\Columns\TextColumn;
 use Closure;
+use Filament\Tables;
+use Filament\Tables\Columns\BadgeColumn;
 use Filament\Tables\Columns\BooleanColumn;
+use Filament\Tables\Columns\TextColumn;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
+use Livewire\Component;
 
 class All extends Component implements Tables\Contracts\HasTable
 {
@@ -36,7 +36,7 @@ class All extends Component implements Tables\Contracts\HasTable
                 ])->sortable(),
             BooleanColumn::make('published')->label('Listed')
                 ->trueColor('danger')
-                ->falseColor('secondary')
+                ->falseColor('secondary'),
         ];
     }
 
@@ -54,7 +54,6 @@ class All extends Component implements Tables\Contracts\HasTable
     {
         return [];
     }
-
 
     public function render()
     {

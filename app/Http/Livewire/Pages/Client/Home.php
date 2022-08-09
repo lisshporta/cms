@@ -18,7 +18,7 @@ class Home extends Component
 
         return view('client.home', [
             'listings' => $listings,
-            'owner' => $owner
+            'owner' => $owner,
         ])->layout('layouts.public.main');
     }
 }

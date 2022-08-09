@@ -9,7 +9,9 @@ use Livewire\Component;
 class DeleteButton extends Component
 {
     public bool $confirmingDeletion;
+
     public Model $model;
+
     public $route;
 
     public function mount($model, $route)
@@ -24,15 +26,18 @@ class DeleteButton extends Component
         return view('livewire.components.delete-button');
     }
 
-    public function delete(){
+    public function delete()
+    {
         try {
             $this->model->delete();
             flash()->success('Item deleted successfully.');
         } catch (\Throwable $th) {
             flash()->error('An unexpected error occured while removing this item.');
             $previous = URL::previous();
+
             return redirect($previous);
         }
+
         return redirect($this->route);
     }
 }
