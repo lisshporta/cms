@@ -14,8 +14,8 @@ yarn-error.log
 /.idea
 /.vscode
 
-/docker-compose/db/data
-/docker-compose/nginx/nginx.conf
+docker/compose/db/data
+docker/compose/nginx
 public/.DS_Store
 public/fonts/.DS_Store
 .DS_Store
