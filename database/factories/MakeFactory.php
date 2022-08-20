@@ -83,7 +83,7 @@ class MakeFactory extends Factory
         ];
 
         return [
-            'name' => $makes[array_rand($makes)]
+            'name' => $makes[array_rand($makes)],
         ];
     }
 }

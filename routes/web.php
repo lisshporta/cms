@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Admin\VehicleController as AdminVehicleController;
-use App\Http\Controllers\HomeController;
 use App\Http\Livewire\Pages\ExplorePage;
 use Illuminate\Support\Facades\Route;
 
