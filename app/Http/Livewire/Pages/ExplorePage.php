@@ -27,7 +27,7 @@ class ExplorePage extends Component
             $builder->with('user.tenant');
         });
 
-        $listings->where('published', true);
+        //$listings->where('published', true);
 
         if ($this->make) {
             $listings->where('make', $this->make);

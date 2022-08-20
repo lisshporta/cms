@@ -16,8 +16,7 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', [HomeController::class,  'index'])->name('home');
-Route::get('/explore', ExplorePage::class)->name('explore');
+Route::get('/', ExplorePage::class)->name('home');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::prefix('dashboard')->group(function () {
@@ -26,9 +25,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         })->name('dashboard');
 
         Route::prefix('inventory')->group(function () {
-            Route::get('/', [AdminVehicleController::class,  'index'])->name('cars.index');
-            Route::get('/new', [AdminVehicleController::class,  'new'])->name('car.new');
-            Route::get('/edit/{id}', [AdminVehicleController::class,  'update'])->name('car.update');
+            Route::get('/', [AdminVehicleController::class, 'index'])->name('cars.index');
+            Route::get('/new', [AdminVehicleController::class, 'new'])->name('car.new');
+            Route::get('/edit/{id}', [AdminVehicleController::class, 'update'])->name('car.update');
         });
     });
 });

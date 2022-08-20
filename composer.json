@@ -2,7 +2,10 @@
     "name": "laravel/laravel",
     "type": "project",
     "description": "The Laravel Framework.",
-    "keywords": ["framework", "laravel"],
+    "keywords": [
+        "framework",
+        "laravel"
+    ],
     "license": "MIT",
     "require": {
         "php": "^8.0.2",
@@ -18,7 +21,6 @@
         "laravel/tinker": "^2.7",
         "livewire/livewire": "^2.5",
         "meilisearch/meilisearch-php": "^0.23.2",
-        "pelmered/fake-car": "^1.7",
         "spatie/laravel-flash": "^1.9",
         "spatie/laravel-sluggable": "^3.4",
         "stancl/tenancy": "^3.5"
