@@ -2,6 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Models\Make;
+use App\Models\Model;
 use App\Models\User;
 use App\Models\Vehicle;
 use Illuminate\Database\Eloquent\Factories\Factory;
@@ -20,27 +22,39 @@ class VehicleFactory extends Factory
      */
     public function definition()
     {
-        $this->faker->addProvider(new \Faker\Provider\Fakecar($this->faker));
-        $v = $this->faker->vehicleArray();
+        $make = Make::factory()->create();
+        $model = Model::factory()->create();
 
         return [
             'user_id' => function () {
                 return User::factory()->create()->id;
             },
-            'name' => $v['brand'].' '.$v['model'],
-            'make' => $v['brand'],
-            'model' => $v['model'],
-            'body_type' => $this->faker->vehicleType,
+            'name' => $make->name . " " . $model->name,
+            'make' => $make->id,
+            'model' => $model->name,
+            'body_type' => $this->faker->randomElement([
+                'Sedan',
+                'HatchBack',
+                'SUV',
+                'Van',
+                'Truck',
+                'Wagon',
+                'Bus',
+                'Coupe',
+            ]),
             'year' => $this->faker->biasedNumberBetween(1998, 2017, 'sqrt'),
             'price' => 4500000,
             'color' => $this->faker->colorName(),
             'engine' => '1,5L',
             'fuel_type' => 'petrol',
             'mileage' => 20000,
-            'door_count' => $this->faker->vehicleDoorCount,
-            'seat_count' => $this->faker->vehicleSeatCount,
-            'gearbox' => $this->faker->vehicleGearBoxType,
+            'door_count' => $this->faker->biasedNumberBetween(2, 4),
+            'seat_count' => $this->faker->biasedNumberBetween(4, 7),
+            'gearbox' => "any",
             'published' => true,
+            'features' => "{}",
+            'sections' => "{}",
+            'images' => "{}",
         ];
     }
 }
