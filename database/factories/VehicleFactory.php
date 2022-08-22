@@ -29,7 +29,7 @@ class VehicleFactory extends Factory
             'user_id' => function () {
                 return User::factory()->create()->id;
             },
-            'name' => $make->name . " " . $model->name,
+            'name' => $make->name.' '.$model->name,
             'make' => $make->id,
             'model' => $model->name,
             'body_type' => $this->faker->randomElement([
@@ -50,11 +50,11 @@ class VehicleFactory extends Factory
             'mileage' => 20000,
             'door_count' => $this->faker->biasedNumberBetween(2, 4),
             'seat_count' => $this->faker->biasedNumberBetween(4, 7),
-            'gearbox' => "any",
+            'gearbox' => 'any',
             'published' => true,
-            'features' => "{}",
-            'sections' => "{}",
-            'images' => "{}",
+            'features' => '{}',
+            'sections' => '{}',
+            'images' => '{}',
         ];
     }
 }
