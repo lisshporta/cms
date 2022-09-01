@@ -71,11 +71,12 @@
     </div>
 
     {{-- Desktop Sidebar --}}
-    <div class="hidden md:flex md:flex-col fixed inset-y-0 border-r border-gray-200 bg-white px-8 py-8 space-y-8 pt-24"
-         style="min-width: 273px;">
+    <div
+        class="hidden md:flex md:flex-col fixed inset-y-0 border-r border-gray-200 bg-white px-8 py-8 space-y-8 pt-24 overflow-y-auto"
+        style="min-width: 273px;">
         <div>
             <div class="text-base font-bold uppercase pb-2">Make</div>
-            <div class="space-y-2">
+            <div class="space-y-2 max-h-60 overflow-hidden">
                 @foreach ($makes as $vehicle_make)
                     @include('includes.sidebar.section', [
                         'selected' => $make,
@@ -84,10 +85,13 @@
                     ])
                 @endforeach
             </div>
+            <div class="text-center">
+                <p class="text-volt-primary pt-3 font-bold">See More</p>
+            </div>
         </div>
         <div>
             <div class="text-base font-bold uppercase pb-2">Body Type</div>
-            <div class="space-y-2">
+            <div class="space-y-2 max-h-60 overflow-hidden">
                 @foreach ($body_types as $body_type)
                     @include('includes.sidebar.section', [
                         'selected' => $body,
@@ -95,6 +99,9 @@
                         'function' => 'body',
                     ])
                 @endforeach
+            </div>
+            <div class="text-center">
+                <p class="text-volt-primary pt-3 font-bold">See More</p>
             </div>
         </div>
     </div>
