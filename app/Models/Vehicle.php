@@ -9,11 +9,13 @@ use Laravel\Scout\Attributes\SearchUsingPrefix;
 use Laravel\Scout\Searchable;
 use Spatie\Sluggable\HasSlug;
 use Spatie\Sluggable\SlugOptions;
+use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 
 class Vehicle extends Model
 {
     use HasFactory, HasSlug, Searchable;
-
+    use BelongsToTenant;
+    
     protected $casts = [
         'published' => 'boolean',
         'features' => 'array',
