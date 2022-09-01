@@ -11,8 +11,15 @@
 |
 */
 
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Illuminate\Foundation\Testing\TestCase;
-use Tests\CreatesApplication;
 
-uses(TestCase::class, CreatesApplication::class, RefreshDatabase::class)->in('Feature', 'Unit');
+use Illuminate\Foundation\Testing\RefreshDatabase;
+use Stancl\Tenancy\Database\Models\Tenant;
+use Tests\TestCase;
+
+uses(TestCase::class, RefreshDatabase::class)->in('Feature');
+
+beforeEach(function () {
+    $tenant = Tenant::create();
+
+    tenancy()->initialize($tenant);
+});
