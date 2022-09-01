@@ -5,6 +5,9 @@ declare(strict_types=1);
 use App\Models\User;
 use Stancl\Tenancy\Database\Models\Domain;
 
+// Use localhost when locally, duh
+$central_domains = env('APP_ENV') === "production" ? ['voltcms.app'] : ['127.0.0.1', 'localhost'];
+
 return [
     'tenant_model' => \App\Models\Tenant::class,
     'id_generator' => Stancl\Tenancy\UUIDGenerator::class,
@@ -16,10 +19,7 @@ return [
      *
      * Only relevant if you're using the domain or subdomain identification middleware.
      */
-    'central_domains' => [
-        '127.0.0.1',
-        'localhost',
-    ],
+    'central_domains' => $central_domains,
 
     /**
      * Tenancy bootstrappers are executed when tenancy is initialized.
