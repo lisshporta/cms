@@ -42,9 +42,18 @@
                     </a>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">
-                    <a href="{{ route('home') }}"
-                       class="{{ renderMenuActiveLink('home') }} inline-flex items-center px-1 pt-1 border-b-4 font-medium text-sm">
-                        Explore </a>
+                    <x-jet-nav-link href="{{ route('home') }}"
+                                    :active="request()->routeIs('home')">
+                        Explore
+                    </x-jet-nav-link>
+                    @auth
+                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                            {{ __('Dashboard') }}
+                        </x-jet-nav-link>
+                        <x-jet-nav-link href="{{ route('cars.index') }}" :active="request()->routeIs('cars.index')">
+                            Inventory
+                        </x-jet-nav-link>
+                    @endauth
                     @if (tenant())
                         <a href="{{ route('contact') }}"
                            class="{{ renderMenuActiveLink('contact') }} inline-flex items-center px-1 pt-1 border-b-4 font-medium text-sm">

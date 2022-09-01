@@ -21,15 +21,15 @@
 </head>
 
 <body class="font-campton antialiased h-full bg-gray-100">
-    <!-- Navigation Menu -->
-    @include('includes.nav')
+<!-- Navigation Menu -->
+@livewire('navigation-menu')
 
-    <!-- Page Content -->
-    <main>
-        {{ $slot }}
-    </main>
-    @stack('modals')
-    @stack('scripts')
-    @livewireScripts
+<!-- Page Content -->
+<main>
+    {{ $slot }}
+</main>
+@stack('modals')
+@stack('scripts')
+@livewireScripts
 </body>
 </html>

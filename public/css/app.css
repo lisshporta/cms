@@ -2372,7 +2372,7 @@ html {
   -moz-tab-size: 4; /* 3 */
   -o-tab-size: 4;
      tab-size: 4; /* 3 */
-  font-family: Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
+  font-family: Campton, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji"; /* 4 */
 }
 
 /*
@@ -3709,12 +3709,12 @@ select{
   margin-bottom: 1.25rem;
 }
 
-.-mt-px{
-  margin-top: -1px;
-}
-
 .-mr-12{
   margin-right: -3rem;
+}
+
+.-mt-px{
+  margin-top: -1px;
 }
 
 .mr-1{
@@ -4515,16 +4515,16 @@ select{
   margin-left: calc(0.25rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
-.space-x-2 > :not([hidden]) ~ :not([hidden]){
-  --tw-space-x-reverse: 0;
-  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
-  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
-}
-
 .space-y-8 > :not([hidden]) ~ :not([hidden]){
   --tw-space-y-reverse: 0;
   margin-top: calc(2rem * calc(1 - var(--tw-space-y-reverse)));
   margin-bottom: calc(2rem * var(--tw-space-y-reverse));
+}
+
+.space-x-2 > :not([hidden]) ~ :not([hidden]){
+  --tw-space-x-reverse: 0;
+  margin-right: calc(0.5rem * var(--tw-space-x-reverse));
+  margin-left: calc(0.5rem * calc(1 - var(--tw-space-x-reverse)));
 }
 
 .space-x-3 > :not([hidden]) ~ :not([hidden]){
@@ -5129,14 +5129,6 @@ select{
   padding-bottom: 0.25rem;
 }
 
-.pr-8{
-  padding-right: 2rem;
-}
-
-.pt-8{
-  padding-top: 2rem;
-}
-
 .pb-2{
   padding-bottom: 0.5rem;
 }
@@ -5147,6 +5139,14 @@ select{
 
 .pt-3{
   padding-top: 0.75rem;
+}
+
+.pt-8{
+  padding-top: 2rem;
+}
+
+.pr-8{
+  padding-right: 2rem;
 }
 
 .pr-1{
@@ -5194,7 +5194,7 @@ select{
 }
 
 .font-sans{
-  font-family: Inter var, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  font-family: Campton, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
 }
 
 .font-mono{
@@ -5405,6 +5405,11 @@ select{
   color: rgb(251 113 133 / var(--tw-text-opacity));
 }
 
+.text-volt-primary{
+  --tw-text-opacity: 1;
+  color: rgb(253 79 79 / var(--tw-text-opacity));
+}
+
 .text-gray-200{
   --tw-text-opacity: 1;
   color: rgb(229 231 235 / var(--tw-text-opacity));
@@ -5413,11 +5418,6 @@ select{
 .text-gray-300{
   --tw-text-opacity: 1;
   color: rgb(209 213 219 / var(--tw-text-opacity));
-}
-
-.text-volt-primary{
-  --tw-text-opacity: 1;
-  color: rgb(253 79 79 / var(--tw-text-opacity));
 }
 
 .text-red-700{
@@ -5948,6 +5948,11 @@ select{
 .hover\:text-danger-500:hover{
   --tw-text-opacity: 1;
   color: rgb(244 63 94 / var(--tw-text-opacity));
+}
+
+.hover\:text-volt-primary-disabled:hover{
+  --tw-text-opacity: 1;
+  color: rgb(227 71 71 / var(--tw-text-opacity));
 }
 
 .hover\:text-danger-700:hover{

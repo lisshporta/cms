@@ -73,7 +73,7 @@
     {{-- Desktop Sidebar --}}
     <div
         class="hidden md:flex md:flex-col fixed inset-y-0 border-r border-gray-200 bg-white px-8 py-8 space-y-8 pt-24 overflow-y-auto"
-        style="min-width: 273px;">
+        style="min-width: 273px;z-index: -1;">
         <div>
             <div class="text-base font-bold uppercase pb-2">Make</div>
             <div class="space-y-2 max-h-60 overflow-hidden">
