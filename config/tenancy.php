@@ -6,7 +6,7 @@ use App\Models\User;
 use Stancl\Tenancy\Database\Models\Domain;
 
 // Use localhost when locally, duh
-$central_domains = env('APP_ENV') === "production" ? ['voltcms.app'] : ['127.0.0.1', 'localhost'];
+$central_domains = env('APP_ENV') === 'production' ? ['voltcms.app'] : ['127.0.0.1', 'localhost'];
 
 return [
     'tenant_model' => \App\Models\Tenant::class,
@@ -62,16 +62,16 @@ return [
             'mysql' => Stancl\Tenancy\TenantDatabaseManagers\MySQLDatabaseManager::class,
             'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLDatabaseManager::class,
 
-            /**
-             * Use this database manager for MySQL to have a DB user created for each tenant database.
-             * You can customize the grants given to these users by changing the $grants property.
-             */
+        /**
+         * Use this database manager for MySQL to have a DB user created for each tenant database.
+         * You can customize the grants given to these users by changing the $grants property.
+         */
             // 'mysql' => Stancl\Tenancy\TenantDatabaseManagers\PermissionControlledMySQLDatabaseManager::class,
 
-            /**
-             * Disable the pgsql manager above, and enable the one below if you
-             * want to separate tenant DBs by schemas rather than databases.
-             */
+        /**
+         * Disable the pgsql manager above, and enable the one below if you
+         * want to separate tenant DBs by schemas rather than databases.
+         */
             // 'pgsql' => Stancl\Tenancy\TenantDatabaseManagers\PostgreSQLSchemaManager::class, // Separate by schema instead of database
         ],
     ],
