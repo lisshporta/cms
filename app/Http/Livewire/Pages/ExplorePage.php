@@ -36,7 +36,6 @@ class ExplorePage extends Component
         }
 
         return view('livewire.pages.explore', [
-            'listings' => $listings->paginate(15),
             'makes' => Make::orderBy('name', 'asc')->get(),
             'body_types' => BodyType::orderBy('name', 'asc')->get(),
         ])->layout('layouts.public.main');
