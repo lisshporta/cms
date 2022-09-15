@@ -57,6 +57,8 @@ services:
             test: [ "CMD", "wget", "--no-verbose", "--spider",  "http://localhost:7700/health" ]
             retries: 3
             timeout: 5s
+        volumes:
+            - ./compose/meilisearch/data.ms:/data.ms
 
     nginx:
         image: nginx:1.21.6-alpine

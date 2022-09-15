@@ -15,6 +15,7 @@ yarn-error.log
 /.vscode
 
 docker/compose/db/data
+docker/compose/meilisearch/data.ms
 docker/compose/nginx
 public/.DS_Store
 public/fonts/.DS_Store

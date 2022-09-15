@@ -131,18 +131,15 @@
                 </button>
             </div>
 
-            {{--            <div class="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-8 py-8">--}}
-            {{--                @forelse($listings as $listing)--}}
-            {{--                    @php--}}
-            {{--                        $path = $listing['user']['domain'] . '.' . env('APP_BASE_URL');--}}
-            {{--                    @endphp--}}
-            {{--                    <a href="{{ tenant_route($path, 'view-vehicle', $listing->slug) }}">--}}
-            {{--                        <x-listing-item :listing="$listing" />--}}
-            {{--                    </a>--}}
-            {{--                @empty--}}
-            {{--                    <div class="text-gray-700 text-base">No vehicles found.</div>--}}
-            {{--                @endforelse--}}
-            {{--            </div>--}}
+            <div class="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-8 py-8">
+                @forelse($listings as $listing)
+                    <a>
+                        <x-listing-item :listing="$listing"/>
+                    </a>
+                @empty
+                    <div class="text-gray-700 text-base">No vehicles found.</div>
+                @endforelse
+            </div>
 
         </div>
         {{--        <div class="pt-8">--}}
