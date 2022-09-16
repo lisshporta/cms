@@ -5,7 +5,6 @@ namespace App\Http\Livewire\Pages;
 use App\Models\BodyType;
 use App\Models\Make;
 use App\Models\Vehicle;
-use Illuminate\Database\Eloquent\Builder;
 use Livewire\Component;
 use Livewire\WithPagination;
 
@@ -13,7 +12,7 @@ class ExplorePage extends Component
 {
     use WithPagination;
 
-    public $search = "";
+    public $search = '';
 
     public $make = null;
 

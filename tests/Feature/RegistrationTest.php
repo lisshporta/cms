@@ -3,20 +3,18 @@
 namespace Tests\Feature;
 
 use App\Providers\RouteServiceProvider;
-use Illuminate\Foundation\Testing\RefreshDatabase;
 use Laravel\Fortify\Features;
 use Laravel\Jetstream\Jetstream;
-use Tests\TestCase;
 
 it('can render the registration page', function () {
-    if (!Features::enabled(Features::registration())) {
+    if (! Features::enabled(Features::registration())) {
         return $this->markTestSkipped('Registration support is not enabled.');
     }
 
     $response = $this->get('/register');
 
     $response->assertStatus(200);
-})->group("auth");
+})->group('auth');
 
 it('cannot render the registration page if support is disabled', function () {
     if (Features::enabled(Features::registration())) {
@@ -26,10 +24,10 @@ it('cannot render the registration page if support is disabled', function () {
     $response = $this->get('/register');
 
     $response->assertStatus(404);
-})->group("auth");
+})->group('auth');
 
 it('can register new users', function () {
-    if (!Features::enabled(Features::registration())) {
+    if (! Features::enabled(Features::registration())) {
         return $this->markTestSkipped('Registration support is not enabled.');
     }
 
@@ -44,6 +42,4 @@ it('can register new users', function () {
 
     $this->assertAuthenticated();
     $response->assertRedirect(RouteServiceProvider::HOME);
-})->group("auth");
-
-
+})->group('auth');

@@ -25,4 +25,3 @@ it('can update the profile name and email', function () {
     $this->assertEquals('Test Name', $user->fresh()->name);
     $this->assertEquals('test@example.com', $user->fresh()->email);
 })->group('profile');
-
