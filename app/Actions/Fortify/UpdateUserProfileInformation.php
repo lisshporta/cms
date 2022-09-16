@@ -12,26 +12,18 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Validate and update the given user's profile information.
      *
-     * @param  mixed  $user
-     * @param  array  $input
+     * @param mixed $user
+     * @param array $input
      * @return void
      */
     public function update($user, array $input)
     {
         Validator::make($input, [
             'name' => ['required', 'string', 'max:255'],
-            'domain' => ['required', 'string', Rule::unique('users')->ignore($user->id)],
             'email' => ['required', 'email', 'max:255', Rule::unique('users')->ignore($user->id)],
             'description' => ['nullable', 'string'],
             'photo' => ['nullable', 'mimes:jpg,jpeg,png', 'max:1024'],
-            'support_email' => ['nullable', 'email', 'max:255'],
-            'support_phone' => ['nullable', 'regex:/^[\+]?[(]?[0-9]{3}[)]?[-\s\.]?[0-9]{3}[-\s\.]?[0-9]{4,6}$/'],
-            'lat' => ['nullable', 'numeric', 'between:-90,90', 'required_with:lng'],
-            'lng' => ['nullable', 'numeric', 'between:-180,180', 'required_with:lat'],
-
         ], [
-            'domain.required' => 'The username field is required',
-            'domain.unique' => 'This username already exists.',
             'lat.required_with' => 'This field is required when the Longitude field is present.',
             'lng.required_with' => 'This field is required when the Latitude field is present.',
             'lat.numeric' => 'This field is not valid.',
@@ -49,12 +41,7 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
             $user->forceFill([
                 'name' => $input['name'],
                 'email' => $input['email'],
-                'domain' => $input['domain'],
                 'description' => $input['description'],
-                'support_email' => $input['support_email'],
-                'support_phone' => $input['support_phone'],
-                'lat' => $input['lat'],
-                'lng' => $input['lng'],
             ])->save();
         }
     }
@@ -62,8 +49,8 @@ class UpdateUserProfileInformation implements UpdatesUserProfileInformation
     /**
      * Update the given verified user's profile information.
      *
-     * @param  mixed  $user
-     * @param  array  $input
+     * @param mixed $user
+     * @param array $input
      * @return void
      */
     protected function updateVerifiedUser($user, array $input)
