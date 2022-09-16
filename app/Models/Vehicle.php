@@ -14,8 +14,7 @@ use Stancl\Tenancy\Database\Concerns\BelongsToTenant;
 class Vehicle extends Model
 {
     use HasFactory, HasSlug, Searchable;
-    use BelongsToTenant;
-    
+
     protected $casts = [
         'published' => 'boolean',
         'features' => 'array',
@@ -62,16 +61,6 @@ class Vehicle extends Model
         return 'slug';
     }
 
-    #[SearchUsingPrefix(['make', 'model'])]
-    #[SearchUsingFullText(['name'])]
-    public function toSearchableArray()
-    {
-        return [
-            'name' => $this->name,
-            'make' => $this->make,
-            'model' => $this->model,
-        ];
-    }
 
     public function user()
     {
