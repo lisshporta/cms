@@ -132,6 +132,7 @@
             </div>
 
             <div class="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-8 py-8">
+
                 @forelse($listings as $listing)
                     <a>
                         <x-listing-item :listing="$listing"/>
@@ -142,8 +143,5 @@
             </div>
 
         </div>
-        {{--        <div class="pt-8">--}}
-        {{--            {{ $listings->links() }}--}}
-        {{--        </div>--}}
     </div>
 </div>

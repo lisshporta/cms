@@ -1,16 +1,17 @@
 <div class="w-full bg-white rounded-sm shadow-md flex flex-col col-span-1 max-w-sm sm:max-w-xs">
     @isset($listing->cover_path)
-        <img class="w-full h-52 object-cover" src="{{asset($listing->cover_path)}}"/>
+        <img style="min-width: 280px;" class="w-full h-52 object-cover" src="{{asset($listing->cover_path)}}"/>
     @else
-        <div style="background-color: #FFF0F0" class="w-full h-52 flex justify-center items-center"></div>
+        <div style="background-color: #e2e2e2; min-width: 280px;"
+             class="w-full h-52 flex justify-center items-center"></div>
     @endisset
 
     <div class="bg-white h-40 flex flex-col justify-between px-3">
         <div class="flex flex-row justify-between h-full py-3">
             <div class="flex flex-col break-words">
-                {{--                <div class="text-base">{{ $listing->year }} {{ $listing->make }}</div>--}}
-                {{--                <div class="text-xl font-semibold">{{ $listing->model }}</div>--}}
-                {{--                <div class="text-sm mt-1">{{ $listing->body_type }}</div>--}}
+                <div class="text-base">{{ $listing->year }} {{ $listing->make }}</div>
+                <div class="text-xl font-semibold">{{ $listing->model }}</div>
+                <div class="text-sm mt-1">{{ $listing->body_type }}</div>
             </div>
             <div class="w-11 flex flex-row justify-end">
                 <svg width="23" height="20" viewBox="0 0 23 20" fill="none"
@@ -22,8 +23,8 @@
             </div>
         </div>
         <div class="flex flex-row justify-end py-2">
-            {{--            <div class="font-bold text-black text-lg">${{ number_format($listing->price, 2) }}--}}
-            {{--            </div>--}}
+            <div class="font-bold text-black text-lg">${{ number_format($listing->price, 2) }}
+            </div>
         </div>
     </div>
 </div>
