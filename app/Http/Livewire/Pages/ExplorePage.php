@@ -22,7 +22,7 @@ class ExplorePage extends Component
 
     public function render()
     {
-        $listings = Vehicle::search($this->search);
+        $listings = Vehicle::search($this->search)->get();
         $count = Vehicle::all()->count();
 
         if ($this->make) {
@@ -35,7 +35,7 @@ class ExplorePage extends Component
 
         return view('livewire.pages.explore', [
             'count' => $count,
-            'listings' => $listings->paginate(15),
+            'listings' => $listings,
             'makes' => Make::orderBy('name', 'asc')->get(),
             'body_types' => BodyType::orderBy('name', 'asc')->get(),
         ])->layout('layouts.public.main');
