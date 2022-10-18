@@ -7,25 +7,25 @@ use App\Models\Vehicle;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class VehicleController extends Controller
+class InventoryController extends Controller
 {
     public function index()
     {
-        return view('admin.cars.index');
+        return view('admin.inventory.index');
     }
 
     public function new()
     {
-        return view('admin.cars.new');
+        return view('admin.inventory.new');
     }
 
     public function update(Request $request)
     {
         $vehicle = Vehicle::where('id', $request->id)->where('user_id', Auth::user()->id)->first();
-        if (! $vehicle) {
+        if (!$vehicle) {
             return abort(404);
         }
 
-        return view('admin.cars.update', ['vehicle' => $vehicle]);
+        return view('admin.inventory.update', ['vehicle' => $vehicle]);
     }
 }

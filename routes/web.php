@@ -1,6 +1,7 @@
 <?php
 
-use App\Http\Controllers\Admin\VehicleController as AdminVehicleController;
+use App\Http\Controllers\Admin\InventoryController;
+use App\Http\Controllers\VehicleController;
 use App\Http\Livewire\Pages\ExplorePage;
 use Illuminate\Support\Facades\Route;
 
@@ -16,17 +17,18 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', ExplorePage::class)->name('home');
+Route::get('/vehicles/{slug}', [VehicleController::class, 'index'])->name('vehicle.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::prefix('dashboard')->group(function () {
+    Route::prefix('admin')->name('admin.')->group(function () {
         Route::get('/', function () {
             return view('dashboard');
         })->name('dashboard');
 
-        Route::prefix('inventory')->group(function () {
-            Route::get('/', [AdminVehicleController::class, 'index'])->name('cars.index');
-            Route::get('/new', [AdminVehicleController::class, 'new'])->name('car.new');
-            Route::get('/edit/{id}', [AdminVehicleController::class, 'update'])->name('car.update');
+        Route::prefix('inventory')->name('inventory.')->group(function () {
+            Route::get('/', [InventoryController::class, 'index'])->name('index');
+            Route::get('/new', [InventoryController::class, 'new'])->name('new');
+            Route::get('/edit/{id}', [InventoryController::class, 'update'])->name('update');
         });
     });
 });

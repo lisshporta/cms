@@ -6,6 +6,6 @@
         </h2>
     </x-slot>
 
-    @livewire('forms.car.new-car')
+    @livewire('forms.vehicle.new-vehicle')
 
 </x-app-layout>

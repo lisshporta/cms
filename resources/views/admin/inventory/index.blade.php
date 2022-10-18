@@ -1,4 +1,4 @@
-@section('title', 'Cars')
+@section('title', 'Vehicles')
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -7,11 +7,10 @@
     </x-slot>
 
     <div class="pb-6 flex flex-row justify-end">
-        <x-volt-button href="{{route('car.new')}}" title='New Vehicle'/>
+        <x-volt-button href="{{route('admin.inventory.new')}}" title='New Vehicle'/>
     </div>
 
     <div class="pb-20">
-        @livewire('tables.car.all')
+        @livewire('vehicle.list-vehicle')
     </div>
-
 </x-app-layout>

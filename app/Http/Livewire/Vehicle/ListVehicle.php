@@ -1,7 +1,7 @@
 <?php
 
 
-namespace App\Http\Livewire\Vehicle\ListVehicle;
+namespace App\Http\Livewire\Vehicle;
 
 use App\Models\Vehicle;
 use Closure;
