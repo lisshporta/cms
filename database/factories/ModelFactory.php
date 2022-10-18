@@ -19,7 +19,7 @@ class ModelFactory extends Factory
     public function definition()
     {
         $make_id = Make::all()->random()->id;
-        $model = Model::all()->where('make_id', $make_id)->first();
+        $model = Model::all()->first();
 
         //Choose a random model
         return [
