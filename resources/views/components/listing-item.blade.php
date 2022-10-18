@@ -1,11 +1,23 @@
 <div class="w-full bg-white rounded-sm shadow-md flex flex-col col-span-1 max-w-sm sm:max-w-xs">
-    @isset($listing->cover_path)
-        <img style="min-width: 280px;" class="w-full h-52 object-cover" src="{{asset($listing->cover_path)}}"/>
-    @else
-        <div style="background-color: #e2e2e2; min-width: 280px;"
-             class="w-full h-52 flex justify-center items-center"></div>
-    @endisset
 
+    @isset($listing->cover_path)
+        <a href="{{ route('vehicle.show',[ $listing->slug ]) }}">
+            <img style="min-width: 280px;" class="w-full h-52 object-cover"
+                 src="{{asset('storage/'. $listing->cover_path)}}"/>
+        </a>
+    @else
+        <a href="{{ route('vehicle.show',[ $listing->slug ]) }}">
+            <div style="background-color: #FCFCFC; min-width: 280px;"
+                 class="w-full h-52 flex justify-center items-center">
+                <svg height="200" viewBox="0 0 512 512" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M258.777 91.9787L184.009 289.236L272.94 291.992L258.777 91.9787Z" fill="#F0F0F0"/>
+                    <path fill-rule="evenodd" clip-rule="evenodd"
+                          d="M253.082 421.266L327.874 223.947L243.714 221.752L253.082 421.266Z" fill="#F0F0F0"/>
+                </svg>
+            </div>
+        </a>
+    @endisset
     <div class="bg-white h-40 flex flex-col justify-between px-3">
         <div class="flex flex-row justify-between h-full py-3">
             <div class="flex flex-col break-words">

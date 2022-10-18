@@ -108,7 +108,8 @@
 
     <div class="w-full px-4 md:pl-72 md:pr-4">
         <div class="w-full">
-            <div class="font-bold text-2xl pt-8 pb-4">Vehicles</div>
+            <div class="font-bold text-2xl pt-8 pb-4">Vehicles <span class="text-sm font-medium underline">({{ $count }})</span>
+            </div>
             <div class="bg-white rounded-md px-4 py-3 md:px-4 md:py-6 flex flex-row space-x-2 items-center">
                 <div class="rounded-md border border-indigo-400 flex flex-row items-center w-full px-4 h-10">
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none"
@@ -131,7 +132,7 @@
                 </button>
             </div>
 
-            <div class="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-8 py-8">
+            <div class="grid grid-cols-1 xs:grid-cols-1 sm:grid-cols-2 md:flex md:flex-wrap gap-2 py-8">
 
                 @forelse($listings as $listing)
                     <a>
