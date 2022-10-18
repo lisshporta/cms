@@ -13,5 +13,6 @@
 
 use Illuminate\Foundation\Testing\RefreshDatabase;
 use Tests\TestCase;
+use Tests\Traits\SetsUpVehicle;
 
 uses(TestCase::class, RefreshDatabase::class)->in('Feature');

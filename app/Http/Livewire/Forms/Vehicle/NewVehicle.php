@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Forms\Car;
+namespace App\Http\Livewire\Forms\Vehicle;
 
 use App\Models\BodyType;
 use App\Models\FuelType;
@@ -141,15 +141,15 @@ class NewVehicle extends Component implements Forms\Contracts\HasForms
         $vehicle = Vehicle::create(array_merge(['user_id' => Auth::user()->id], $this->form->getState()));
         if (!$vehicle) {
             flash()->error('An unexpected error occurred while adding this vehicle.');
-            Redirect::route('car.new');
+            Redirect::route('vehicle.new');
         }
 
         flash()->success('Vehicle has been added successfully.');
-        Redirect::route('car.update', ['id' => $vehicle->id]);
+        Redirect::route('vehicle.update', ['id' => $vehicle->id]);
     }
 
     public function render()
     {
-        return view('livewire.forms.car.new');
+        return view('livewire.forms.vehicle.new');
     }
 }

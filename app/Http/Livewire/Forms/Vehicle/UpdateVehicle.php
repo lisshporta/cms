@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Http\Livewire\Forms\Car;
+namespace App\Http\Livewire\Forms\Vehicle;
 
 use App\Models\BodyType;
 use App\Models\FuelType;
@@ -192,16 +192,16 @@ class UpdateVehicle extends Component implements Forms\Contracts\HasForms
         try {
             $this->vehicle->update($this->form->getState());
             flash()->success('Vehicle has been updated successfully.');
-            Redirect::route('car.update', ['id' => $this->vehicle->id]);
+            Redirect::route('admin.inventory.update', ['id' => $this->vehicle->id]);
         } catch (\Throwable $th) {
             Log::error($th);
             flash()->error('An unexpected error occured while updating this item.');
-            Redirect::route('car.update', ['id' => $this->vehicle->id]);
+            Redirect::route('admin.inventory.update', ['id' => $this->vehicle->id]);
         }
     }
 
     public function render()
     {
-        return view('livewire.forms.car.new');
+        return view('livewire.forms.vehicle.new');
     }
 }
