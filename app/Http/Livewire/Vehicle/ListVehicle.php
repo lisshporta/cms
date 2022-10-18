@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Livewire\Vehicle;
 
 use App\Models\Vehicle;
@@ -48,7 +47,7 @@ class ListVehicle extends Component implements Tables\Contracts\HasTable
 
     protected function getTableRecordUrlUsing(): Closure
     {
-        return fn(Vehicle $record): string => route('admin.inventory.update', ['id' => $record->id]);
+        return fn (Vehicle $record): string => route('admin.inventory.update', ['id' => $record->id]);
     }
 
     protected function getTableEmptyStateActions(): array

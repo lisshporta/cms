@@ -4,11 +4,9 @@ namespace Tests\Feature\Vehicle;
 
 use App\Models\User;
 use Tests\TestCase;
-use Tests\Traits\SetsUpVehicle;
 
 class CreateVehicleTest extends TestCase
 {
-
     /**
      * @group Vehicle
      */
@@ -17,5 +15,4 @@ class CreateVehicleTest extends TestCase
         $user = User::factory()->create();
         $this->actingAs($user)->get(route('admin.inventory.new'))->assertOk();
     }
-
 }

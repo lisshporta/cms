@@ -83,7 +83,7 @@ class UpdateVehicle extends Component implements Forms\Contracts\HasForms
                             'Used' => 'Used',
                         ])
                         ->default('New')
-                        ->afterStateHydrated(fn($state) => $state)
+                        ->afterStateHydrated(fn ($state) => $state)
                         ->required(),
                 ]),
             Grid::make([
@@ -151,9 +151,9 @@ class UpdateVehicle extends Component implements Forms\Contracts\HasForms
                 'lg' => 4,
             ])
                 ->schema([
-                    TextInput::make('price')->required()->mask(fn(TextInput\Mask $mask) => $mask
+                    TextInput::make('price')->required()->mask(fn (TextInput\Mask $mask) => $mask
                         ->patternBlocks([
-                            'money' => fn(TextInput\Mask $mask) => $mask
+                            'money' => fn (TextInput\Mask $mask) => $mask
                                 ->numeric()
                                 ->thousandsSeparator(',')
                                 ->decimalSeparator('.'),
@@ -166,7 +166,7 @@ class UpdateVehicle extends Component implements Forms\Contracts\HasForms
                             'Manual' => 'Manual',
                         ])
                         ->default('Automatic')
-                        ->afterStateHydrated(fn($state) => $state)
+                        ->afterStateHydrated(fn ($state) => $state)
                         ->required(),
                 ]),
             TagsInput::make('features')->placeholder('eg. Android Auto'),

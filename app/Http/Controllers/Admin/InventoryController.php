@@ -22,7 +22,7 @@ class InventoryController extends Controller
     public function update(Request $request)
     {
         $vehicle = Vehicle::where('id', $request->id)->where('user_id', Auth::user()->id)->first();
-        if (!$vehicle) {
+        if (! $vehicle) {
             return abort(404);
         }
 

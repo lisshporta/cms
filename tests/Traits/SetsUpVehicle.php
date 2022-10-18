@@ -8,6 +8,7 @@ use App\Models\Vehicle;
 trait SetsUpVehicle
 {
     private Vehicle $vehicle;
+
     private User $user;
 
     public function setUp(): void

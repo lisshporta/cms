@@ -12,7 +12,7 @@ class VehicleController extends Controller
         $slug = $request->slug;
         $vehicle = Vehicle::where('slug', $slug)->with('user')->first();
 
-        if (!$vehicle) {
+        if (! $vehicle) {
             return abort(404);
         }
 
