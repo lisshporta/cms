@@ -17,10 +17,12 @@
                         Explore
                     </x-jet-nav-link>
                     @auth
-                        <x-jet-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                        <x-jet-nav-link href="{{ route('admin.dashboard') }}"
+                                        :active="request()->routeIs('admin.dashboard')">
                             {{ __('Dashboard') }}
                         </x-jet-nav-link>
-                        <x-jet-nav-link href="{{ route('cars.index') }}" :active="request()->routeIs('cars.index')">
+                        <x-jet-nav-link href="{{ route('admin.inventory.index') }}"
+                                        :active="request()->routeIs('admin.inventory.index')">
                             Inventory
                         </x-jet-nav-link>
                     @endauth
@@ -29,8 +31,8 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
-            @auth
-                <!-- Teams Dropdown -->
+                @auth
+                    <!-- Teams Dropdown -->
                     @if (Laravel\Jetstream\Jetstream::hasTeamFeatures())
                         <div class="ml-3 relative">
                             <x-jet-dropdown align="right" width="60">
@@ -85,7 +87,7 @@
                         </div>
                     @endif
 
-                <!-- Settings Dropdown -->
+                    <!-- Settings Dropdown -->
                     <div class="ml-3 relative">
                         <x-jet-dropdown align="right" width="48">
                             <x-slot name="trigger">
@@ -177,10 +179,12 @@
                 Explore
             </x-jet-responsive-nav-link>
             @auth
-                <x-jet-responsive-nav-link href="{{ route('dashboard') }}" :active="request()->routeIs('dashboard')">
+                <x-jet-responsive-nav-link href="{{ route('admin.dashboard') }}"
+                                           :active="request()->routeIs('admin.dashboard')">
                     {{ __('Dashboard') }}
                 </x-jet-responsive-nav-link>
-                <x-jet-responsive-nav-link href="{{ route('cars.index') }}" :active="request()->routeIs('cars.index')">
+                <x-jet-responsive-nav-link href="{{ route('admin.inventory.index') }}"
+                                           :active="request()->routeIs('admin.inventory')">
                     Inventory
                 </x-jet-responsive-nav-link>
             @endauth
@@ -217,7 +221,7 @@
                         </x-jet-responsive-nav-link>
                     @endif
 
-                <!-- Authentication -->
+                    <!-- Authentication -->
                     <form method="POST" action="{{ route('logout') }}" x-data>
                         @csrf
 
