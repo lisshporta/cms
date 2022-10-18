@@ -18,7 +18,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Livewire\Component;
 
-class NewCar extends Component implements Forms\Contracts\HasForms
+class NewVehicle extends Component implements Forms\Contracts\HasForms
 {
     use Forms\Concerns\InteractsWithForms;
 
@@ -72,20 +72,20 @@ class NewCar extends Component implements Forms\Contracts\HasForms
                         ->label('Make')
                         ->options(Make::all()->pluck('name', 'id'))
                         ->required()
-                        ->dehydrateStateUsing(fn ($state) => Make::where('id', $state)->first()?->name)
+                        ->dehydrateStateUsing(fn($state) => Make::where('id', $state)->first()?->name)
                         ->searchable(),
                     TextInput::make('model')->required(),
                     Select::make('body_type')
                         ->label('Body Type')
                         ->options(BodyType::all()->pluck('name', 'id'))
                         ->required()
-                        ->dehydrateStateUsing(fn ($state) => BodyType::where('id', $state)->first()?->name)
+                        ->dehydrateStateUsing(fn($state) => BodyType::where('id', $state)->first()?->name)
                         ->searchable(),
                     Select::make('fuel_type')
                         ->label('Fuel Type')
                         ->options(FuelType::all()->pluck('name', 'id'))
                         ->required()
-                        ->dehydrateStateUsing(fn ($state) => FuelType::where('id', $state)->first()?->name)
+                        ->dehydrateStateUsing(fn($state) => FuelType::where('id', $state)->first()?->name)
                         ->searchable(),
                 ]),
 
@@ -108,9 +108,9 @@ class NewCar extends Component implements Forms\Contracts\HasForms
                 'lg' => 4,
             ])
                 ->schema([
-                    TextInput::make('price')->required()->default('0.00')->mask(fn (TextInput\Mask $mask) => $mask
+                    TextInput::make('price')->required()->default('0.00')->mask(fn(TextInput\Mask $mask) => $mask
                         ->patternBlocks([
-                            'money' => fn (TextInput\Mask $mask) => $mask
+                            'money' => fn(TextInput\Mask $mask) => $mask
                                 ->numeric()
                                 ->thousandsSeparator(',')
                                 ->decimalSeparator('.'),
@@ -139,8 +139,8 @@ class NewCar extends Component implements Forms\Contracts\HasForms
     public function submit()
     {
         $vehicle = Vehicle::create(array_merge(['user_id' => Auth::user()->id], $this->form->getState()));
-        if (! $vehicle) {
-            flash()->error('An unexpected error occured while adding this vehicle.');
+        if (!$vehicle) {
+            flash()->error('An unexpected error occurred while adding this vehicle.');
             Redirect::route('car.new');
         }
 

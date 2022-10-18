@@ -1,6 +1,7 @@
 <?php
 
-namespace App\Http\Livewire\Tables\Car;
+
+namespace App\Http\Livewire\Vehicle\ListVehicle;
 
 use App\Models\Vehicle;
 use Closure;
@@ -12,7 +13,7 @@ use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Facades\Auth;
 use Livewire\Component;
 
-class All extends Component implements Tables\Contracts\HasTable
+class ListVehicle extends Component implements Tables\Contracts\HasTable
 {
     use Tables\Concerns\InteractsWithTable;
 
@@ -47,7 +48,7 @@ class All extends Component implements Tables\Contracts\HasTable
 
     protected function getTableRecordUrlUsing(): Closure
     {
-        return fn (Vehicle $record): string => route('car.update', ['id' => $record->id]);
+        return fn(Vehicle $record): string => route('admin.inventory.update', ['id' => $record->id]);
     }
 
     protected function getTableEmptyStateActions(): array
@@ -57,6 +58,6 @@ class All extends Component implements Tables\Contracts\HasTable
 
     public function render()
     {
-        return view('livewire.tables.car.all');
+        return view('livewire.tables.vehicle.list-vehicle');
     }
 }
