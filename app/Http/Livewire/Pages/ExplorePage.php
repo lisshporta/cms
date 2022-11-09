@@ -7,6 +7,7 @@ use App\Models\Make;
 use App\Models\Vehicle;
 use Livewire\Component;
 use Livewire\WithPagination;
+use MeiliSearch\Exceptions\ApiException;
 
 class ExplorePage extends Component
 {
@@ -22,7 +23,13 @@ class ExplorePage extends Component
 
     public function render()
     {
-        $listings = Vehicle::search($this->search)->get();
+        try {
+            $listings = Vehicle::search($this->search)->get();
+        } catch (ApiException $error) {
+            // Meilisearch hasn't been indexed
+            $listings = [];
+        }
+
         $count = Vehicle::all()->count();
 
         if ($this->make) {
