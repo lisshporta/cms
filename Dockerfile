@@ -13,17 +13,7 @@ RUN composer install \
   --ansi \
   --no-scripts
 
-#
 FROM php:8.1-fpm as base
-
-ARG S6_OVERLAY_VERSION=3.1.2.1
-
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
-RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
-ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
-RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
-
-
 LABEL maintainer="Jordan Jones (@heyjordn)"
 
 ARG PHP_VERSION='8.1'
@@ -39,30 +29,35 @@ ENV BUILD_PHP_VERSION=$PHP_VERSION \
     PUID=9999 \
     PGID=9999
 
+# Overlay S6
+ARG S6_OVERLAY_VERSION=3.1.2.1
+
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-noarch.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
+ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
+RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
+
 ADD deployment/php-packages/${PHP_VERSION}/libs.txt /tmp/libs.txt
 ADD deployment/php-packages/${PHP_VERSION}/packages.txt /tmp/packages.txt
 
 
 RUN apt-get update \
     \
-    # configure web user and group
+    # Configure web user and group
     && groupadd -r -g $PGID $VOLT_GROUP \
     && useradd --no-log-init -r -s /usr/bin/bash -d $VOLT_HOME -u $PUID -g $PGID $VOLT_USER \
     \
-    # install dependencies
+    # Install dependencies
     && apt-get -y --no-install-recommends install \
         ca-certificates \
         curl \
         git \
         unzip \
-    # cleanup
+    # Cleanup sources
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 COPY --chmod=755 deployment/etc/s6-overlay /etc/s6-overlay/
-
-
-WORKDIR /var/www/html
 
 # Install PHP FPM
 ENV PHP_DATE_TIMEZONE="UTC" \
@@ -83,32 +78,32 @@ ENV PHP_DATE_TIMEZONE="UTC" \
 
 RUN apt-get update \
     && apt-get install -y libfcgi-bin \
-    # install `php-fpm-healthcheck`
+    # Install `php-fpm-healthcheck`
     && curl -o /usr/local/bin/php-fpm-healthcheck https://raw.githubusercontent.com/renatomefi/php-fpm-healthcheck/master/php-fpm-healthcheck \
     && chmod +x /usr/local/bin/php-fpm-healthcheck \
     # set pool name to be configurable by env
     # RUN sed -i -e 's/\[www\]/\[$\{PHP_POOL_NAME\}]/g' /usr/local/etc/php/fpm/pool.d/www.conf \
-    # cleanup
+    # Cleanup sources
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* /var/www/html/*
-#
+
 COPY deployment/etc/php/fpm/pool.d /usr/local/etc/php-fpm.d/
 
 ENV MSMTP_RELAY_SERVER_HOSTNAME="mailhog" \
     MSMTP_RELAY_SERVER_PORT="1025" \
     SSL_MODE="none"
 
-# install`nginx` (web server) & `msmtp` (smtp client)
+# Install`nginx` (web server) & `msmtp` (smtp client)
 RUN apt-get update \
     && apt-get -y --no-install-recommends install \
         msmtp \
         msmtp-mta \
         nginx \
     \
-    # ensure volt user permissions are correct
+    # Ensure volt user permissions are correct
     && chown -R $VOLT_USER:$VOLT_GROUP /var/www/html/ \
     \
-    # cleanup
+    # Cleanup sources
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* /var/www/html/* \
     && rm -f /etc/nginx/sites-enabled/default
@@ -118,9 +113,11 @@ COPY --chmod=755 deployment/etc/s6-overlay /etc/s6-overlay/
 
 COPY deployment/etc/nginx /etc/nginx/
 
-# COPY deployment/etc/php/fpm/pool.d /etc/php/current_version/fpm/pool.d/
+# Copy source and configure Laravel folders
+WORKDIR /var/www/html
 
 COPY . .
+
 COPY --from=vendor /var/www/html/vendor vendor
 
 RUN mkdir -p \
