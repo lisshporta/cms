@@ -1,5 +1,12 @@
+# Build Node Dependencies
+FROM node:18 as yarn
+WORKDIR /app
+COPY package-lock.json ./
+RUN npm ci
+
+# Build Composer Dependencies
 ARG COMPOSER_VERSION=latest
-FROM composer:${COMPOSER_VERSION} AS vendor
+FROM composer:${COMPOSER_VERSION} AS composer-dependencies
 
 WORKDIR /var/www/html
 COPY composer* ./
@@ -37,6 +44,9 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-noarch.tar.xz
 ADD https://github.com/just-containers/s6-overlay/releases/download/v${S6_OVERLAY_VERSION}/s6-overlay-x86_64.tar.xz /tmp
 RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 
+# Copy over S6 configurations
+COPY --chmod=755 deployment/etc/s6-overlay /etc/s6-overlay/
+
 ADD deployment/php-packages/${PHP_VERSION}/libs.txt /tmp/libs.txt
 ADD deployment/php-packages/${PHP_VERSION}/packages.txt /tmp/packages.txt
 
@@ -56,8 +66,6 @@ RUN apt-get update \
     # Cleanup sources
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
-
-COPY --chmod=755 deployment/etc/s6-overlay /etc/s6-overlay/
 
 # Install PHP FPM
 ENV PHP_DATE_TIMEZONE="UTC" \
@@ -108,9 +116,6 @@ RUN apt-get update \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/* /var/www/html/* \
     && rm -f /etc/nginx/sites-enabled/default
 
-# Copy over S6 configurations
-COPY --chmod=755 deployment/etc/s6-overlay /etc/s6-overlay/
-
 COPY deployment/etc/nginx /etc/nginx/
 
 # Copy source and configure Laravel folders
@@ -118,7 +123,9 @@ WORKDIR /var/www/html
 
 COPY . .
 
-COPY --from=vendor /var/www/html/vendor vendor
+# Get Node and Composer Dependencies
+COPY --from=composer-dependencies /var/www/html/vendor vendor
+COPY --from=node-dependencies /app/node_modules node_modules
 
 RUN mkdir -p \
   storage/framework/{sessions,views,cache} \
