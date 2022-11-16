@@ -22,8 +22,6 @@
       </div>
    </div>
    <div align="center" style="text-align: left;"><br></div>
-   <div align="center" style="text-align: left;"><br></div>
-   <div align="center" style="text-align: left;"><br></div>
    <div align="center" style="text-align: left;"><strong><span data-custom-class="heading_1">TABLE OF CONTENTS</span></strong></div>
    <div align="center" style="text-align: left;"><br></div>
    <div align="center" style="text-align: left; line-height: 1.5;"><a data-custom-class="link" href="#agreement"><span style="font-size: 15px;"><span data-custom-class="body_text">1. AGREEMENT TO TERMS</span></span></a></div>
