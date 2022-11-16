@@ -1,12 +1,12 @@
 # Build Node Dependencies
-FROM node:18 as yarn
+FROM node:18 as node-dependencies
 WORKDIR /app
-COPY package-lock.json ./
+COPY package.json .
+COPY package-lock.json .
 RUN npm ci
 
 # Build Composer Dependencies
-ARG COMPOSER_VERSION=latest
-FROM composer:${COMPOSER_VERSION} AS composer-dependencies
+FROM composer:2 AS composer-dependencies
 
 WORKDIR /var/www/html
 COPY composer* ./
