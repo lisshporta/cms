@@ -1,9 +1,6 @@
 apt-utils
 gnupg
 gosu
-git
-curl
-wget
 libcurl4-openssl-dev
 ca-certificates
 libmemcached-dev
@@ -19,8 +16,6 @@ libwebp-dev
 libmcrypt-dev
 libonig-dev
 libzip-dev
-zip
-unzip
 libargon2-1
 iputils-ping
 libidn2-0

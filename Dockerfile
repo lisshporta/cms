@@ -48,11 +48,9 @@ RUN tar -C / -Jxpf /tmp/s6-overlay-x86_64.tar.xz
 COPY --chmod=755 deployment/etc/s6-overlay /etc/s6-overlay/
 
 ADD deployment/php-packages/${PHP_VERSION}/libs.txt /tmp/libs.txt
-ADD deployment/php-packages/${PHP_VERSION}/packages.txt /tmp/packages.txt
 
 
 RUN apt-get update \
-    \
     # Configure web user and group
     && groupadd -r -g $PGID $VOLT_GROUP \
     && useradd --no-log-init -r -s /usr/bin/bash -d $VOLT_HOME -u $PUID -g $PGID $VOLT_USER \
@@ -63,9 +61,38 @@ RUN apt-get update \
         curl \
         git \
         unzip \
+        # Installs needed OS Libs
+        $(cat /temp/libs.txt); \
+    # Install mysql
+    docker-php-ext-install pdo_mysql; \
+    # Install zip
+    docker-php-ext-configure zip && docker-php-ext-install zip; \
+    # Install mbstring
+    docker-php-ext-install mbstring; \
+    # Installs GD extension
+    docker-php-ext-configure gd \
+                --prefix=/usr \
+                --with-jpeg \
+                --with-webp \
+                --with-freetype \
+    docker-php-ext-install gd; \
+    # Include OPcache for extra performance
+    docker-php-ext-install opcache; \
+    # Install redis
+    pecl -q install -o -f redis \
+        && rm -rf /tmp/pear \
+        && docker-php-ext-enable redis; \
+    \
+    docker-php-ext-install pcntl; \
+    # Installs BCMath
+    docker-php-ext-install bcmath; \
+    # Install Pgsql extension
+    docker-php-ext-install pdo_pgsql; \
+    # Install Pgsql extension
+    docker-php-ext-install pgsql; \
     # Cleanup sources
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
+    apt-get clean; \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* /usr/share/doc/*
 
 # Install PHP FPM
 ENV PHP_DATE_TIMEZONE="UTC" \
