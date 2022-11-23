@@ -82,7 +82,7 @@ class MakeSeeder extends Seeder
         ];
 
         foreach ($makes as $make) {
-            Make::create([
+            Make::updateOrCreate([
                 'name' => $make,
             ]);
         }
