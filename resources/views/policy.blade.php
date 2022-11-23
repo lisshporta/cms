@@ -3,7 +3,7 @@
         <div class="min-h-screen flex flex-col items-center pt-6 sm:pt-0">
             <div>
                 <a href="{{ route('home') }}">
-                    <img src="/img/logo.svg" class="h-12 mx-auto" />
+                    <img src="{{ asset('/img/logo.svg') }}" class="h-12 mx-auto" />
                 </a>
             </div>
 

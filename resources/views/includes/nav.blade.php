@@ -38,7 +38,7 @@
             <div class="flex-1 flex items-center justify-center sm:items-stretch sm:justify-start">
                 <div class="flex-shrink-0 flex items-center">
                     <a href="{{ route('home') }}">
-                        <img src="/img/logo.svg" class="h-10 w-auto"/>
+                        <img src="{{ asset('/img/logo.svg') }}" class="h-10 w-auto"/>
                     </a>
                 </div>
                 <div class="hidden sm:ml-6 sm:flex sm:space-x-8">

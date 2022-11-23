@@ -4,7 +4,7 @@
         <x-slot name="logo">
         </x-slot>
         <div>
-            <img src="/img/logo.svg" class="h-12 mx-auto" />
+            <img src="{{ asset('/img/logo.svg') }}" class="h-12 mx-auto" />
         </div>
         <div class="my-4 text-sm text-gray-600">
             {{ __('Forgot your password? No problem. Just let us know your email address and we will email you a password reset link that will allow you to choose a new one.') }}

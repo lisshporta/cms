@@ -32,7 +32,7 @@
                 </div>
 
                 <div class="flex-shrink-0 flex items-center px-4">
-                    <img src="/img/logo.svg" class="h-12"/>
+                    <img src="{{ asset('/img/logo.svg') }}" class="h-12"/>
                 </div>
                 <div class="mt-5 flex-1 h-0 overflow-y-auto">
                     <nav class="px-8 space-y-8">
