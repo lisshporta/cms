@@ -8,30 +8,15 @@ ARG uid
 RUN apt-get update && apt-get install -y \
     git \
     curl \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
     zip \
     unzip \
     libzip-dev \
-    supervisor \
-    libmagickwand-dev \
     mariadb-client \
-    libfreetype6-dev \
-    libjpeg62-turbo-dev \
-    libxml2-dev \
-    iputils-ping \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install -j$(nproc) gd
-
-# Clear cache
-RUN apt-get clean && rm -rf /var/lib/apt/lists/*
-
-RUN pecl install imagick \
-    && docker-php-ext-enable imagick
+    iputils-ping  \
+    && apt-get clean && rm -rf /var/lib/apt/lists/*
 
 # Install PHP extensions
-RUN docker-php-ext-install soap pdo_mysql mbstring zip exif pcntl bcmath
+RUN docker-php-ext-install pdo_mysql
 
 # Get latest Composer
 COPY --from=composer:latest /usr/bin/composer /usr/bin/composer
