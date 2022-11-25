@@ -16,7 +16,6 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-
 Route::get('/', ExplorePage::class)->name('home');
 Route::get('/vehicles/{slug}', [VehicleController::class, 'index'])->name('vehicle.show');
 
