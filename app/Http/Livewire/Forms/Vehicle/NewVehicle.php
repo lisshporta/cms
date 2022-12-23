@@ -62,7 +62,7 @@ class NewVehicle extends Component implements Forms\Contracts\HasForms
 
                     Select::make('model')
                         ->label('Model')
-                        ->dehydrateStateUsing(fn ($state) => dd(Model::where('id',$state)))
+                        ->dehydrateStateUsing(fn ($state) => Model::where('id',$state))
                         ->options(function(callable $get) {
                             $make = Make::find($get('make'));
                             if (!$make) {
@@ -154,7 +154,6 @@ class NewVehicle extends Component implements Forms\Contracts\HasForms
     {
         $formState = $this->form->getState();
         $name = $formState['make'] . $formState['model'];
-        dd($formState['model']);
         $vehicle = Vehicle::create(array_merge(['user_id' => Auth::user()->id, 'name' => $name], $formState));
         if (!$vehicle) {
             flash()->error('An unexpected error occurred while adding this vehicle.');

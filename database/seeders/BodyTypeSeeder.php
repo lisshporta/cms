@@ -26,7 +26,7 @@ class BodyTypeSeeder extends Seeder
         ];
 
         foreach ($types as $type) {
-            BodyType::create([
+            BodyType::updateOrCreate([
                 'name' => $type,
             ]);
         }

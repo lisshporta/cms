@@ -12,4 +12,8 @@ class Make extends Model
     protected $fillable = [
         'name',
     ];
+
+    public function models(){
+        return $this->hasMany(\App\Models\Model::class);
+    }
 }

@@ -8,9 +8,6 @@
 
     <title>@yield('title', '/') - {{ config('app.name', 'Volt') }}</title>
 
-    <!-- Fonts -->
-    <link rel="stylesheet" href="https://rsms.me/inter/inter.css">
-
     <!-- Styles -->
     <link rel="stylesheet" href="{{ mix('css/app.css') }}">
 
