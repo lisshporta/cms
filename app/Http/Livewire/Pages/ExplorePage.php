@@ -11,40 +11,8 @@ use MeiliSearch\Exceptions\ApiException;
 
 class ExplorePage extends Component
 {
-    use WithPagination;
-
-    public $search = '';
-
-    public $make = null;
-
-    public $body = null;
-
-    protected $queryString = ['search', 'make', 'body'];
-
     public function render()
     {
-        try {
-            $listings = Vehicle::search($this->search)->get();
-        } catch (ApiException $error) {
-            // Meilisearch hasn't been indexed
-            $listings = [];
-        }
-
-        $count = Vehicle::all()->count();
-
-        if ($this->make) {
-            $listings->where('make', $this->make);
-        }
-
-        if ($this->body) {
-            $listings->where('body_type', $this->body);
-        }
-
-        return view('livewire.pages.explore', [
-            'count' => $count,
-            'listings' => $listings,
-            'makes' => Make::orderBy('name', 'asc')->get(),
-            'body_types' => BodyType::orderBy('name', 'asc')->get(),
-        ])->layout('layouts.public.main');
+        return view('livewire.pages.explore')->layout('layouts.public.main');
     }
 }
