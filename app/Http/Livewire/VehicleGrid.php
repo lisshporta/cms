@@ -12,25 +12,34 @@ class VehicleGrid extends Component
 {
     public int $year;
     public string $search = "";
-    public string $make = "";
-    public ?string $body = "";
+    public array $makes = [];
+    public ?array $bodies = [];
 
     protected $listeners = ['resetMakes', 'resetBodies','filterMakes', 'filterBodies'];
 
     public function resetMakes(){
-        $this->make = "";
+        $this->makes = [];
+    }
+
+
+    public function resetBodies(){
+        $this->bodies = [];
+    }
+
+    public function filterBodies(string $body){
+        if (in_array($body, $this->bodies)) {
+            array_pop($this->bodies);
+        } else {
+            $this->bodies[] = $body;
+        }
     }
 
     public function filterMakes(string $make){
-        $this->make = $make;
-    }
-
-    public function resetBodies(){
-        $this->body = "";
-    }
-
-    public function filterBodies(string $body) {
-        $this->body = $body;
+        if (in_array($make, $this->makes)) {
+            array_pop($this->makes);
+        } else {
+            $this->makes[] = $make;
+        }
     }
 
     public function render()
@@ -38,12 +47,12 @@ class VehicleGrid extends Component
         try {
             $listings = Vehicle::search($this->search)->get();
 
-            if ($this->make) {
-                $listings = $listings->where('make', $this->make);
+            if ($this->makes) {
+                $listings = $listings->whereIn('make', $this->makes);
             }
 
-            if ($this->body) {
-                $listings = $listings->where('body_type', $this->body);
+            if ($this->bodies) {
+                $listings = $listings->whereIn('body_type', $this->bodies);
             }
         } catch (ApiException $error) {
             $listings = [];

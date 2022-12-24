@@ -1,9 +1,9 @@
 @props([
     "title",
-    "reset"
+    "reset",
 ])
 <div
-    x-data="{ allChecked: []}"
+    x-data="{ allChecked: [] }"
     x-init="$watch('allChecked', allChecked => allChecked.length === 0 ? Livewire.emit('{{ $reset }}') : null )"
 >
     <div class="flex w-full justify-between items-center pb-2">
