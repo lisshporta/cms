@@ -2,7 +2,8 @@
 
 namespace App\Enums;
 
-enum BodyType:string {
+enum BodyType: string
+{
     case SEDAN = 'Sedan';
     case HATCHBACK = 'HatchBack';
     case SUV = 'Suv';

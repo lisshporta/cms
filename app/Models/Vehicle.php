@@ -63,12 +63,13 @@ class Vehicle extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function make() {
+    public function make()
+    {
         return $this->hasOne(Make::class);
     }
 
-    public function model() {
+    public function model()
+    {
         return $this->hasOne(Model::class);
     }
-
 }

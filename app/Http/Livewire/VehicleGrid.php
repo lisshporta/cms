@@ -2,8 +2,6 @@
 
 namespace App\Http\Livewire;
 
-use App\Enums\BodyType;
-use App\Models\Make;
 use App\Models\Vehicle;
 use Livewire\Component;
 use MeiliSearch\Exceptions\ApiException;
@@ -11,22 +9,27 @@ use MeiliSearch\Exceptions\ApiException;
 class VehicleGrid extends Component
 {
     public int $year;
-    public string $search = "";
+
+    public string $search = '';
+
     public array $makes = [];
+
     public ?array $bodies = [];
 
-    protected $listeners = ['resetMakes', 'resetBodies','filterMakes', 'filterBodies'];
+    protected $listeners = ['resetMakes', 'resetBodies', 'filterMakes', 'filterBodies'];
 
-    public function resetMakes(){
+    public function resetMakes()
+    {
         $this->makes = [];
     }
 
-
-    public function resetBodies(){
+    public function resetBodies()
+    {
         $this->bodies = [];
     }
 
-    public function filterBodies(string $body){
+    public function filterBodies(string $body)
+    {
         if (in_array($body, $this->bodies)) {
             array_pop($this->bodies);
         } else {
@@ -34,7 +37,8 @@ class VehicleGrid extends Component
         }
     }
 
-    public function filterMakes(string $make){
+    public function filterMakes(string $make)
+    {
         if (in_array($make, $this->makes)) {
             array_pop($this->makes);
         } else {
@@ -60,7 +64,7 @@ class VehicleGrid extends Component
 
         return view('livewire.vehicle-grid', [
             'count' => Vehicle::all()->count(),
-            'listings' => $listings
+            'listings' => $listings,
         ]);
     }
 }

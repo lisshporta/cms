@@ -13,7 +13,8 @@ class Make extends Model
         'name',
     ];
 
-    public function models(){
+    public function models()
+    {
         return $this->hasMany(\App\Models\Model::class);
     }
 }

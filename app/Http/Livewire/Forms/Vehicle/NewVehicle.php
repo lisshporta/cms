@@ -8,7 +8,6 @@ use App\Models\FuelType;
 use App\Models\Make;
 use App\Models\Model;
 use App\Models\Vehicle;
-use Carbon\Carbon;
 use Filament\Forms;
 use Filament\Forms\Components\FileUpload;
 use Filament\Forms\Components\Grid;
@@ -55,19 +54,20 @@ class NewVehicle extends Component implements Forms\Contracts\HasForms
                         ->label('Make')
                         ->options(Make::all()->pluck('name', 'id'))
                         ->required()
-                        ->dehydrateStateUsing(fn ($state) => Make::where('id',$state)->first())
+                        ->dehydrateStateUsing(fn ($state) => Make::where('id', $state)->first())
                         ->afterStateUpdated(fn (callable $set) => $set('model', 'Select an option'))
                         ->searchable()
                         ->reactive(),
 
                     Select::make('model')
                         ->label('Model')
-                        ->dehydrateStateUsing(fn ($state) => Model::where('id',$state))
-                        ->options(function(callable $get) {
+                        ->dehydrateStateUsing(fn ($state) => Model::where('id', $state))
+                        ->options(function (callable $get) {
                             $make = Make::find($get('make'));
-                            if (!$make) {
+                            if (! $make) {
                                 return Model::all()->pluck('name', 'id');
                             }
+
                             return $make->models->pluck('name');
                         })
                         ->required()
@@ -153,9 +153,9 @@ class NewVehicle extends Component implements Forms\Contracts\HasForms
     public function submit()
     {
         $formState = $this->form->getState();
-        $name = $formState['make'] . $formState['model'];
+        $name = $formState['make'].$formState['model'];
         $vehicle = Vehicle::create(array_merge(['user_id' => Auth::user()->id, 'name' => $name], $formState));
-        if (!$vehicle) {
+        if (! $vehicle) {
             flash()->error('An unexpected error occurred while adding this vehicle.');
             Redirect::route('vehicle.new');
         }
