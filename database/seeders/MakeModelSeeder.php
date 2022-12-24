@@ -1108,10 +1108,10 @@ class MakeModelSeeder extends Seeder
         foreach ($vehicles as $vehicle) {
             $make_name = $vehicle['brand'];
             $models = $vehicle['models'];
-            $make_id = Make::create(['name' => $make_name])->id;
+            $make_id = Make::updateOrCreate(['name' => $make_name])->id;
 
             foreach ($models as $model) {
-                Model::create([
+                Model::updateOrCreate([
                     'name' => $model,
                     'make_id' => $make_id,
                 ]);
