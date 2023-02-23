@@ -49,7 +49,6 @@ class VehicleGrid extends Component
     public function render()
     {
         try {
-            // $listings = Vehicle::search($this->search)->get();
             $listings = Vehicle::get();
 
             if ($this->makes) {
