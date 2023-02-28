@@ -22,7 +22,9 @@
 <!-- - [Usage](#usage) -->
 
 - [Installation](#installation)
-    - [Environmental Variables](#environmental-variables)
+  - [Docker](#docker)
+  - [Manual](#manual)
+- [Environmental Variables](#environmental-variables)
 
 <!-- 
 # Usage
@@ -32,31 +34,91 @@ Login to the latest version of the dashboard at [admin..com](https://admin.metro
 
 *For **development only**.*
 
-Clone this repository and navigate inside the project folder and install the dependencies by running:
+**Recommended**: The project comes with a [docker](#docker) dev container with all dependencies, php extensions and services set up already, 
+however, you can always set up the dependencies [manually](#manual). 
+Clone this repository and navigate inside the project folder, copy `.env`, build/start containers:
 
 ```sh
-composer install
-composer dump-autoload
+λ git clone https://github.com/VoltAuto/cms
+λ cp .env.example .env
+λ cd cms/docker
+λ docker compose up -d
 ```
 
-# Docker
+## Docker
 
-To start building images and run containers, run the following
+Generally, the following commands are run _after_ "logging" into the php container
 
 ```bash
-docker-compose up -d
+# List the running containers
+λ docker container ls --format "table {{.ID}}\t{{.Image}}\t{{.Names}}" 
+
+CONTAINER ID   IMAGE                         NAMES
+7337267930d0   volt-php                      docker-app-1
+f09a8d18b60a   nginx:1.21.6-alpine           docker-nginx-1
+0860c95d16c0   mariadb                       docker-db-1
+43bc1ce20641   getmeili/meilisearch:latest   docker-meilisearch-1
+92c2973a2035   redis:6.2-alpine              docker-redis-1
+
+# "Log" into the php container
+λ docker exec -it docker-app-1 /bin/bash                                                                                     master ⬆ ✭ ✱ ◼
+volt-user@7337267930d0:/var/www$ #Inside PHP Container
 ```
 
-> Hint, we can check if Laravel Horizon is running with `supervisor`, it's a bit inconsistent, so try restarting if it fails We can restart with `docker-compose exec app supervisord` and check if laravel horizon is running with `docker-compose exec app supervisorctl`
+After logging into the docker container, we can install dependencies, run migrations composer is 
+already installed.
+
+```bash
+λ composer install
+λ php artisan migrate
+λ php artisan db:seed
+```
+
+We need to index `meilisearch` Vehicle models for searching with
+
+```bash
+λ php artisan scout:import "App\Models\Vehicle"
+```
+Finally, install node dependencies and compile assets with [Laravel Mix](https://laravel-mix.com/) and [yarn](https://yarnpkg.com/)
+```bash
+# Install Node dependencies
+λ yarn
+# Compile Assets
+λ yarn dev
+```
+
+## Manual
+
+The "Manual" method for development, just means you have to set up the required services _and_ dependencies
+locally, Volt uses the following stack:
+
+- [MariaDB](https://mariadb.org/)
+- [Redis](https://redis.io/)
+- [Meilisearch](https://www.meilisearch.com/)
+- [Nginx](https://www.nginx.com/) (Optional for Local)
+
+Refer to the installation of each to install. After local services have been installed and
+[Environmental Variables](#environmental-variables) have been configured install dependencies with [composer](https://getcomposer.org/).
+
+```bash
+λ composer install
+λ php artisan migrate
+λ php artisan db:seed
+```
+We also need to index `meilisearch` Vehicle models for searching with
+
+```bash
+λ php artisan scout:import "App\Models\Vehicle"
+```
+Finally, install node dependencies and compile assets with [Laravel Mix](https://laravel-mix.com/) and [yarn](https://yarnpkg.com/)
+```bash
+# Install Node dependencies
+λ yarn
+# Compile Assets
+λ yarn dev
+```
 
 ### Environmental Variables
-
-Before running a build or the development server, be sure to the [dotenv](https://github.com/motdotla/dotenv) files in
-the root directory.
-
-```sh
-mv .env.example .env
-```
 
 The following variables are required for database connectivity:
 
@@ -67,7 +129,7 @@ The following variables are required for database connectivity:
 - `DB_USERNAME`
 - `DB_PASSWORD`
 
-The following is required for sending emails:
+The following are required for sending emails:
 
 - `MAIL_MAILER`
 - `MAIL_HOST`
@@ -76,22 +138,13 @@ The following is required for sending emails:
 - `MAIL_PASSWORD`
 - `MAIL_ENCRYPTION`
 
-After installing the dependencies and configuring environmental variables,go ahead and generate the `jwt` key with
+The following are required for index searching with 
+[Laravel Scout](https://laravel.com/docs/10.x/scout) and [Meilisearch](https://www.meilisearch.com/):
 
-```sh
-php artisan jwt:secret
-```
+- `SCOUT_DRIVER`
+- `MEILISEARCH_HOST`
 
-Then run the migrations and finally seed the database with the following:
+After installing the dependencies and configuring environmental variables, head over to [localhost](http://localhost).
 
-```sh
-php artisan migrate
-php artisan db:seed
-```
 
-Finally we run the development server
-
-```sh
-php artisan serve
-```
 
