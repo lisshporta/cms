@@ -1,7 +1,7 @@
 {
-    "name": "laravel/laravel",
+    "name": "volt-auto/cms",
     "type": "project",
-    "description": "The Laravel Framework.",
+    "description": "Marketplace for buying, selling and trading vehicles",
     "keywords": [
         "framework",
         "laravel"
@@ -33,6 +33,7 @@
         "nunomaduro/collision": "^6.1",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.2",
+        "pestphp/pest-plugin-livewire": "^1.0",
         "phpunit/phpunit": "^9.5.10",
         "spatie/laravel-ignition": "^1.0"
     },
@@ -51,7 +52,8 @@
     "scripts": {
         "post-autoload-dump": [
             "Illuminate\\Foundation\\ComposerScripts::postAutoloadDump",
-            "@php artisan package:discover --ansi"
+            "@php artisan package:discover --ansi",
+            "@php artisan scout:import \"App\\Models\\Vehicle\""
         ],
         "post-update-cmd": [
             "@php artisan vendor:publish --tag=laravel-assets --ansi --force"
