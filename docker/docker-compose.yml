@@ -72,6 +72,24 @@ services:
         networks:
             - volt
 
+    minio:
+        image: 'minio/minio:latest'
+        ports:
+            - '9000:9000'
+            - '8900:8900'
+        environment:
+            MINIO_ROOT_USER: 'volt'
+            MINIO_ROOT_PASSWORD: 'password'
+        volumes:
+            - './compose/minio:/data/minio'
+        networks:
+            - volt
+        command: minio server /data/minio --console-address ":8900"
+        healthcheck:
+            test: ["CMD", "curl", "-f", "http://localhost:9000/minio/health/live"]
+            retries: 3
+            timeout: 5s
+
 volumes:
     db:
 
