@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\InventoryController;
 use App\Http\Controllers\VehicleController;
+use App\Http\Controllers\DashboardController;
 use App\Http\Livewire\Pages\ExplorePage;
 use Illuminate\Support\Facades\Route;
 
@@ -20,10 +21,8 @@ Route::get('/', ExplorePage::class)->name('home');
 Route::get('/vehicles/{slug}', [VehicleController::class, 'index'])->name('vehicle.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::prefix('admin')->name('admin.')->group(function () {
-        Route::get('/', function () {
-            return view('dashboard');
-        })->name('dashboard');
+    Route::name('admin.')->group(function () {
+    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::prefix('inventory')->name('inventory.')->group(function () {
             Route::get('/', [InventoryController::class, 'index'])->name('index');
