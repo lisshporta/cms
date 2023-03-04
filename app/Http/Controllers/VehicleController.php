@@ -20,9 +20,4 @@ class VehicleController extends Controller
 
         return view('vehicle.index', ['vehicle' => $vehicle, 'similarVehicles' => $similarVehicles]);
     }
-
-    public function dashboard()
-    {
-        return view('dashboard');
-    }
 }
