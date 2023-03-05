@@ -19,7 +19,7 @@ it('can update the profile name and email', function () {
     $this->actingAs($user = User::factory()->create());
 
     Livewire::test(UpdateProfileInformationForm::class)
-        ->set('state', ['name' => 'Test Name', 'email' => 'test@example.com'])
+        ->set('state', ['name' => 'Test Name', 'email' => 'test@example.com', 'description' => 'testing description'])
         ->call('updateProfileInformation');
 
     $this->assertEquals('Test Name', $user->fresh()->name);
