@@ -8,13 +8,10 @@
 
     <title>@yield('title', '/') - {{ config('app.name', 'Volt') }}</title>
 
-    <!-- Styles -->
-    <link rel="stylesheet" href="{{ mix('css/app.css') }}">
-
     @livewireStyles
 
     <!-- Scripts -->
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/js/app.js', 'resources/css/app.css'])
 </head>
 
 <body class="font-campton antialiased h-full bg-gray-100">
