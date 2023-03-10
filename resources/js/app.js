@@ -1,5 +1,3 @@
-require('./bootstrap');
-
 import Alpine from 'alpinejs';
 import Focus from '@alpinejs/focus';
 import FormsAlpinePlugin from '../../vendor/filament/forms/dist/module.esm';
