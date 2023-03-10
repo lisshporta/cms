@@ -2,9 +2,7 @@
 
 namespace Tests\Feature\Vehicle;
 
-use App\Http\Livewire\Forms\Vehicle\NewVehicle;
 use App\Models\User;
-use Livewire\Livewire;
 use Tests\TestCase;
 
 class CreateVehicleTest extends TestCase
