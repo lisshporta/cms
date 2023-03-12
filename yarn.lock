@@ -80,6 +80,11 @@
     "@nodelib/fs.scandir" "2.1.5"
     "fastq" "^1.6.0"
 
+"@ryangjchandler/alpine-clipboard@^2.2.0":
+  "integrity" "sha512-2kKHd2mA6K7RuYlC+1fikIUPVJeJLQlY2w9rNGrOgVfzXUZRotjTP+EjxouDizTEvqNRkVTJnmmNle32Uhb4zw=="
+  "resolved" "https://registry.npmjs.org/@ryangjchandler/alpine-clipboard/-/alpine-clipboard-2.2.0.tgz"
+  "version" "2.2.0"
+
 "@socket.io/component-emitter@~3.1.0":
   "integrity" "sha512-+9jVqKhRSpsc591z5vX+X5Yyw+he/HCB4iQ/RYxw35CEPaY1gnsNE43nf9n9AaYjAQrTiI/mOwKUKdUs9vf7Xg=="
   "resolved" "https://registry.npmjs.org/@socket.io/component-emitter/-/component-emitter-3.1.0.tgz"

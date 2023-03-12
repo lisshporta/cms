@@ -1,5 +1,6 @@
 @section('title', $vehicle->name)
 <x-app-layout>
+    @include('includes.flash')
     <div class="py-12 mx-auto max-w-7xl px-8 space-y-12 mb-28">
         <div class="bg-white rounded-sm shadow-md px-4 py-4 md:px-12 md:py-8">
             <div class="flex flex-col lg:flex-row lg:items-end justify-start lg:justify-between ">
@@ -11,21 +12,21 @@
                     </div>
                 </div>
                 <div class="py-3 lg:py-0 lg:pb-1">
-                    <a href="#"
-                       class="flex flex-row flex-grow-0 w-36 justify-center items-center space-x-2 py-1 bg-volt-primary rounded-lg"><span
-                            class="text-white font-medium text-xl mt-1">Share</span>
-                        <span class="mb-1"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
-                            <path
-                                d="M3.3335 10V16.6667C3.3335 17.1087 3.50909 17.5326 3.82165 17.8452C4.13421 18.1577 4.55814 18.3333 5.00016 18.3333H15.0002C15.4422 18.3333 15.8661 18.1577 16.1787 17.8452C16.4912 17.5326 16.6668 17.1087 16.6668 16.6667V10"
-                                stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M13.3332 5.00002L9.99984 1.66669L6.6665 5.00002" stroke="white" stroke-width="2"
-                                  stroke-linecap="round" stroke-linejoin="round"/>
-                            <path d="M10 1.66669V12.5" stroke="white" stroke-width="2" stroke-linecap="round"
-                                  stroke-linejoin="round"/>
-                        </svg></span>
-                    </a>
-                </div>
+                    <div x-data="{ url: window.location.href }">
+                      <button class="flex flex-row flex-grow-0 w-36 justify-center items-center space-x-2 py-1 bg-volt-primary rounded-lg"
+                        x-on:click.prevent="$clipboard(url)"
+                        type="button">
+                        <span class="text-white font-medium text-xl mt-1" x-text="'Share'"></span>
+                        <span class="mb-1">
+                          <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M3.3335 10V16.6667C3.3335 17.1087 3.50909 17.5326 3.82165 17.8452C4.13421 18.1577 4.55814 18.3333 5.00016 18.3333H15.0002C15.4422 18.3333 15.8661 18.1577 16.1787 17.8452C16.4912 17.5326 16.6668 17.1087 16.6668 16.6667V10" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M13.3332 5.00002L9.99984 1.66669L6.6665 5.00002" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                            <path d="M10 1.66669V12.5" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      </button>
+                    </div>
+                  </div>
             </div>
             <div class="py-6 grid grid-cols-1 lg:grid-cols-7 gap-4">
                 <div class="col-span-1 lg:col-span-5">
