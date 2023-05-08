@@ -12,6 +12,7 @@ export default defineConfig({
         ],
         refresh: [
             'resources/routes/**',
+            'app/**',
             'routes/**',
             'resources/views/**',
         ],

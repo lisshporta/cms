@@ -1,5 +1,7 @@
 <?php
 
+use App\Models\Make;
+use App\Models\Model;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -16,8 +18,8 @@ return new class extends Migration
         Schema::create('vehicles', function (Blueprint $table) {
             $table->id();
             $table->string('name');
-            $table->string('make');
-            $table->string('model');
+            $table->foreignIdFor(Make::class);
+            $table->foreignIdFor(Model::class);
             $table->string('body_type')->default('Sedan');
             $table->year('year');
             $table->decimal('price', 11, 2)->default(0);

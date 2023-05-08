@@ -2,7 +2,6 @@
 
 namespace Database\Factories;
 
-use App\Models\Make;
 use App\Models\Model;
 use App\Models\User;
 use App\Models\Vehicle;
@@ -22,16 +21,16 @@ class VehicleFactory extends Factory
      */
     public function definition()
     {
-        $make = Make::factory()->create();
         $model = Model::factory()->create();
+        $make = $model->make()->first();
 
         return [
             'user_id' => function () {
                 return User::factory()->create()->id;
             },
             'name' => $make->name.' '.$model->name,
-            'make' => $make->id,
-            'model' => $model->name,
+            'make_id' => $make->id,
+            'model_id' => $model->id,
             'body_type' => $this->faker->randomElement([
                 'Sedan',
                 'HatchBack',
@@ -52,9 +51,9 @@ class VehicleFactory extends Factory
             'seat_count' => $this->faker->biasedNumberBetween(4, 7),
             'gearbox' => 'any',
             'published' => true,
-            'features' => '{}',
-            'sections' => '{}',
-            'images' => '{}',
+            'features' => [],
+            'sections' => [],
+            'images' => [],
         ];
     }
 }

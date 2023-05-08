@@ -21,7 +21,7 @@ Route::get('/', ExplorePage::class)->name('home');
 Route::get('/vehicles/{slug}', [VehicleController::class, 'index'])->name('vehicle.show');
 
 Route::middleware(['auth:sanctum', 'verified'])->group(function () {
-    Route::name('admin.')->group(function () {
+    Route::name('admin.')->prefix('admin')->group(function () {
         Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
 
         Route::prefix('inventory')->name('inventory.')->group(function () {

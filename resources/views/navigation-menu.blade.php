@@ -12,10 +12,6 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-8 sm:flex">
-                    <x-jet-nav-link href="{{ route('home') }}"
-                                    :active="request()->routeIs('home')">
-                        Explore
-                    </x-jet-nav-link>
                     @auth
                         <x-jet-nav-link href="{{ route('admin.dashboard') }}"
                                         :active="request()->routeIs('admin.dashboard')">
@@ -23,9 +19,13 @@
                         </x-jet-nav-link>
                         <x-jet-nav-link href="{{ route('admin.inventory.index') }}"
                                         :active="request()->routeIs('admin.inventory.index')">
-                            Inventory
+                            {{ __('Inventory') }}
                         </x-jet-nav-link>
                     @endauth
+                    <x-jet-nav-link href="{{ route('home') }}"
+                                    :active="request()->routeIs('home')">
+                        Explore
+                    </x-jet-nav-link>
 
                 </div>
             </div>

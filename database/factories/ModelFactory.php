@@ -2,8 +2,8 @@
 
 namespace Database\Factories;
 
+use App\Constants\VehicleHashTable;
 use App\Models\Make;
-use App\Models\Model;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,13 +18,21 @@ class ModelFactory extends Factory
      */
     public function definition()
     {
-        $make_id = Make::all()->random()->id;
-        $model = Model::all()->first();
+        // All  this does is get a random Make and Model and ensure
+        // that they are associated with each other
 
-        //Choose a random model
+        $vehicleHashTable = new VehicleHashTable();
+        $vehicles = $vehicleHashTable->getAllVehicles();
+        $models = $vehicles[array_rand($vehicles)];
+        $makes = array_keys($vehicles);
+        $randomMake = $makes[array_rand($makes)];
+
+        $make = Make::factory()->create(['name' => $randomMake]);
+        $randomModel = $models[array_rand($models)];
+
         return [
-            'make_id' => $make_id,
-            'name' => $model->name,
+            'make_id' => $make->id,
+            'name' => $randomModel,
         ];
     }
 }

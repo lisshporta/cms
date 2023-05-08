@@ -16,7 +16,8 @@ class MakeFactory extends Factory
      */
     public function definition()
     {
-        $makes = ['Abarth',
+        $makes = [
+            'Abarth',
             'Alfa Romeo',
             'Aston Martin',
             'Audi',

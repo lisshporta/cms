@@ -11,5 +11,11 @@ class Model extends LaravelModel
 
     protected $fillable = [
         'name',
+        'make_id',
     ];
+
+    public function make(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Make::class);
+    }
 }
