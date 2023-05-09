@@ -1,14 +1,17 @@
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="./banners/banner.png"></a></p>
 
   </br>
+<a href="https://discord.gg/4Ha3SdMe">
+    <img src="https://img.shields.io/badge/Join_OUR_DISCORD-7289DA?style=for-the-badge" alt="Join Our Discord">
+</a>
+<a href="https://github.com/volt/admin-dashboard#contribute" target="_blank">
+    <img alt="Contributors" src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=for-the-badge">
+</a>
 
-  <a href="https://github.com/volt/admin-dashboard#contribute" target="_blank">
-    <img alt="Contributors" src="https://img.shields.io/badge/all_contributors-2-orange.svg?style=flat-square">
-  </a>
+<a href="https://github.com/nsfw-filter/nsfw-filter/blob/master/LICENSE" target="_blank">
+    <img alt="LICENSE" src="https://img.shields.io/github/license/navendu-pottekkat/nsfw-filter?style=for-the-badge&color=yellow">
+<a/>
 
-  <a href="https://github.com/nsfw-filter/nsfw-filter/blob/master/LICENSE" target="_blank">
-    <img alt="LICENSE" src="https://img.shields.io/github/license/navendu-pottekkat/nsfw-filter?style=flat-square&color=yellow">
-  <a/>
 </p>
 <hr>
 
@@ -142,4 +145,10 @@ The following are required for index searching with
 After installing the dependencies and configuring environmental variables, head over to [localhost](http://localhost).
 
 
+## Community
 
+Feel free to join our community and ask any questions about the project or pitch any ideas
+
+<a href="https://discord.gg/4Ha3SdMe">
+    <img src="https://img.shields.io/badge/Join_OUR_DISCORD-7289DA?style=for-the-badge" alt="Join Our Discord">
+</a>
