@@ -93,7 +93,9 @@
                             <x-slot name="trigger">
                                 @if (Laravel\Jetstream\Jetstream::managesProfilePhotos())
                                     <button
-                                        class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition">
+                                        class="flex text-sm border-2 border-transparent rounded-full focus:outline-none focus:border-gray-300 transition"
+                                        data-cy="navigation-account-dropdown"
+                                    >
                                         <img class="h-12 w-12 rounded-full object-cover"
                                              src="{{ Auth::user()->profile_photo_url }}"
                                              alt="{{ Auth::user()->name }}"/>
@@ -121,7 +123,7 @@
                                     {{ __('Manage Account') }}
                                 </div>
 
-                                <x-jet-dropdown-link class="text-base" href="{{ route('profile.show') }}">
+                                <x-jet-dropdown-link class="text-base" href="{{ route('profile.show') }}" data-cy="navigation-profile-dropdown">
                                     {{ __('Profile') }}
                                 </x-jet-dropdown-link>
 
@@ -148,10 +150,14 @@
                 @endauth
                 @guest
                     <a href="{{ route('login') }}"
-                       class="border-transparent text-gray-500 hover:text-volt-primary-disabled hover:text-volt-primary-disabled inline-flex items-center px-1 pt-1 mr-3 border-b-2 font-medium text-sm">
+                       class="border-transparent text-gray-500 hover:text-volt-primary-disabled hover:text-volt-primary-disabled inline-flex items-center px-1 pt-1 mr-3 border-b-2 font-medium text-sm"
+                       data-cy="navigation-login-link"
+                    >
                         Log In </a>
                     <a href="{{ route('register') }}"
-                       class="border-transparent text-gray-500 text-volt-primary hover:text-volt-primary-disabled hover:text-volt-primary-disabled inline-flex font-bold items-center px-1 pt-1 border-b-2 font-medium text-sm">
+                       class="border-transparent text-gray-500 text-volt-primary hover:text-volt-primary-disabled hover:text-volt-primary-disabled inline-flex font-bold items-center px-1 pt-1 border-b-2 font-medium text-sm"
+                        data-cy="navigation-create-account-link"
+                    >
                         Create Account </a>
                 @endguest
             </div>
